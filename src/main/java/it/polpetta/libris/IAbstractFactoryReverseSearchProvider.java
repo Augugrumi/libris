@@ -6,6 +6,6 @@ package it.polpetta.libris;
 public interface IAbstractFactoryReverseSearchProvider {
 
     // I need a query builder here
-    public IQueryBuilder buildQuery();
+    public IQueryBuilder imageSearchBuildQuery();
 
 }
