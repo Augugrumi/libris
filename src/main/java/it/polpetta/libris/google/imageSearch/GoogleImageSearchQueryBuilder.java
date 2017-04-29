@@ -44,13 +44,25 @@ public class GoogleImageSearchQueryBuilder implements IQueryBuilder {
     public IQuery runQuery() {
 
         // do the query
-        AbstractFactoryMethodSearcher factory = new URLFactoryMethodSearcher(location, link);
-        ISearcher searcher = factory.makeSearcher();
 
-        JSONObject res = searcher.search();
+        ISearcher searcher = null;
+        AbstractFactoryMethodSearcher factory;
+        JSONObject res;
 
-        // transform res into a String[]
+        // FIXME
+        if (link != null) {
+            factory = new URLFactoryMethodSearcher(location, link);
+            searcher = factory.makeSearcher();
+        } else if (photo != null) {
+            // TODO
+        }
+        else {
+            return null; // No link or photo provided
+        }
 
+        // res = searcher.search();
+
+        // Transform res into a String[]
         return new GoogleImageSearchQuery(null);
     }
 }
