@@ -6,8 +6,23 @@
 
     <groupId>it.polpetta</groupId>
     <artifactId>libris</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <packaging>jar</packaging>
+    
+    <name>Reverse Image Search Lib</name>
+    <description>A Java library for reverse image search</description>
+    
+    <licenses>
+        <license>
+            <name>GNU Lesser Public License, Version 3.0</name>
+            <url>https://www.gnu.org/licenses/lgpl-3.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    
+    <scm>
+        <url>https://github.com/Polpetta/libris</url>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

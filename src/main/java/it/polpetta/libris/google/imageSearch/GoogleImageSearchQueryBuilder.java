@@ -7,7 +7,9 @@ import it.polpetta.libris.google.imageSearch.searchers.ISearcher;
 import it.polpetta.libris.google.imageSearch.searchers.URLFactoryMethodSearcher;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+
 import org.json.*;
 
 
@@ -47,7 +49,7 @@ public class GoogleImageSearchQueryBuilder implements IQueryBuilder {
 
         ISearcher searcher = null;
         AbstractFactoryMethodSearcher factory;
-        JSONObject res;
+        JSONObject res = null;
 
         // FIXME
         if (link != null) {
@@ -60,9 +62,14 @@ public class GoogleImageSearchQueryBuilder implements IQueryBuilder {
             return null; // No link or photo provided
         }
 
-        // res = searcher.search();
+        try {
+            res = searcher.search();
+        } catch (IOException e) {
 
-        // Transform res into a String[]
-        return new GoogleImageSearchQuery(null);
+            System.err.println("Error while searching the resources");
+            e.printStackTrace();
+        }
+
+        return new GoogleImageSearchQuery(res);
     }
 }
