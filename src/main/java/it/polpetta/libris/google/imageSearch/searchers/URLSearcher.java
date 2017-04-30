@@ -102,7 +102,9 @@ class URLSearcher implements ISearcher {
                     try {
                         new URL(toCheck);
                         linkRes.add(toCheck);
-                    } catch (MalformedURLException e) {}
+                    } catch (MalformedURLException e) {
+                        printMalformedError(e);
+                    }
                 }
 
             }
@@ -142,8 +144,16 @@ class URLSearcher implements ISearcher {
             try {
                 new URL(imageUrl);
                 imageRes.add(imageUrl);
-            } catch (MalformedURLException e) {}
+            } catch (MalformedURLException e) {
+                printMalformedError(e);
+            }
         }
         return imageRes;
+    }
+
+    private void printMalformedError (MalformedURLException e) {
+
+        System.err.println("An error occurred parsing the URL!");
+        e.printStackTrace();
     }
 }
