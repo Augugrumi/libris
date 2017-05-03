@@ -10,7 +10,10 @@ public abstract class AbstractFactoryMethodSSL {
     protected String keyPassword = null;
     protected SSLContext sslContext = null;
 
-    public AbstractFactoryMethodSSL () {
+    public AbstractFactoryMethodSSL (String keyPassword) {
 
+        this.keyPassword = keyPassword;
     }
+
+    public abstract ISSLContextObtainer makeSSLContextObtainer();
 }
