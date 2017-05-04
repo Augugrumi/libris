@@ -1,21 +1,20 @@
 package it.polpetta.libris.google.imageSearch;
 
 import it.polpetta.libris.IQuery;
-import org.json.JSONObject;
 
 /**
  * Created by davide on 28/04/17.
  */
 public class GoogleImageSearchQuery implements IQuery {
 
-    private JSONObject res;
+    private SearchResult res;
 
-    public GoogleImageSearchQuery(JSONObject res){
+    public GoogleImageSearchQuery(SearchResult res){
 
         this.res = res;
     }
 
-    public JSONObject getContest() {
+    public SearchResult getContest() {
         return res;
     }
 }

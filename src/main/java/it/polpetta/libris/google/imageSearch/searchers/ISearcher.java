@@ -1,6 +1,6 @@
 package it.polpetta.libris.google.imageSearch.searchers;
 
-import org.json.*;
+import it.polpetta.libris.google.imageSearch.SearchResult;
 
 import java.io.IOException;
 
@@ -9,5 +9,5 @@ import java.io.IOException;
  */
 public interface ISearcher {
 
-    JSONObject search() throws IOException;
+    SearchResult search() throws IOException;
 }

@@ -1,7 +1,7 @@
 package it.polpetta.libris.google.imageSearch.searchers;
 
 import it.polpetta.libris.google.imageSearch.Coordinates;
-import org.json.JSONObject;
+import it.polpetta.libris.google.imageSearch.SearchResult;
 
 import java.io.IOException;
 import java.net.URI;
@@ -17,7 +17,7 @@ class LocalPhotoSearcher implements ISearcher {
         this.path = pathToImage;
     }
 
-    public JSONObject search() throws IOException {
+    public SearchResult search() throws IOException {
 
         // TODO
 
