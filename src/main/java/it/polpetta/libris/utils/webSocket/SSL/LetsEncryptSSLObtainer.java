@@ -21,7 +21,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
  * Created by davide on 03/05/17.
  */
 // TODO: we need to make a cert and a privkey first! See https://github.com/txedo/bouncycastle-rsa-pem-write
-public class LetsEncryptSSLObtainer implements ISSLContextObtainer {
+class LetsEncryptSSLObtainer implements ISSLContextObtainer {
 
     private String pathToCerts = null;
     private String keyPassword = null;
