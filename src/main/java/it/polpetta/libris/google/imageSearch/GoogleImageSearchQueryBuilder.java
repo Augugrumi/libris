@@ -2,8 +2,8 @@ package it.polpetta.libris.google.imageSearch;
 
 import it.polpetta.libris.IQuery;
 import it.polpetta.libris.IQueryBuilder;
-import it.polpetta.libris.google.imageSearch.searchers.AbstractFactoryMethodSearcher;
-import it.polpetta.libris.google.imageSearch.searchers.ISearcher;
+import it.polpetta.libris.utils.AbstractFactoryMethodSearcher;
+import it.polpetta.libris.utils.ISearcher;
 import it.polpetta.libris.google.imageSearch.searchers.URLFactoryMethodSearcher;
 import it.polpetta.libris.utils.SearchResult;
 

@@ -1,6 +1,8 @@
 package it.polpetta.libris.google.imageSearch.searchers;
 
 import it.polpetta.libris.google.imageSearch.Coordinates;
+import it.polpetta.libris.utils.AbstractFactoryMethodSearcher;
+import it.polpetta.libris.utils.ISearcher;
 
 import java.net.URL;
 

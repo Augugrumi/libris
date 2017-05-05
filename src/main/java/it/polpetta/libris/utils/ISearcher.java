@@ -1,4 +1,4 @@
-package it.polpetta.libris.google.imageSearch.searchers;
+package it.polpetta.libris.utils;
 
 import it.polpetta.libris.utils.SearchResult;
 

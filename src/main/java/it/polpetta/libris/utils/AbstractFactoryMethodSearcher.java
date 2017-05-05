@@ -1,4 +1,4 @@
-package it.polpetta.libris.google.imageSearch.searchers;
+package it.polpetta.libris.utils;
 
 
 import it.polpetta.libris.google.imageSearch.Coordinates;
@@ -10,7 +10,7 @@ public abstract class AbstractFactoryMethodSearcher {
 
     protected Coordinates location = null;
 
-    AbstractFactoryMethodSearcher(Coordinates location) {
+    public AbstractFactoryMethodSearcher(Coordinates location) {
         this.location = location;
     }
 

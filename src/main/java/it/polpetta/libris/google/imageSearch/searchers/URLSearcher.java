@@ -3,6 +3,7 @@ package it.polpetta.libris.google.imageSearch.searchers;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import it.polpetta.libris.google.imageSearch.Coordinates;
+import it.polpetta.libris.utils.ISearcher;
 import it.polpetta.libris.utils.SearchResult;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
