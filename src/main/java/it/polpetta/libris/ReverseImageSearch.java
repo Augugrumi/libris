@@ -1,5 +1,6 @@
 package it.polpetta.libris;
 
+import it.polpetta.libris.azure.AzureAbstractFactory;
 import it.polpetta.libris.google.GoogleAbstractFactory;
 
 /**
@@ -13,5 +14,9 @@ public class ReverseImageSearch {
 
     public static IAbstractFactoryReverseSearchProvider getClarifaiServices() {
         return null;
+    }
+
+    public static IAbstractFactoryReverseSearchProvider getAzireServices (String subscriptionKey) {
+        return new AzureAbstractFactory(subscriptionKey);
     }
 }
