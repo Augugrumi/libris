@@ -1,6 +1,7 @@
 package it.polpetta.libris.google.imageSearch;
 
 import it.polpetta.libris.IQuery;
+import it.polpetta.libris.utils.SearchResult;
 
 /**
  * Created by davide on 28/04/17.

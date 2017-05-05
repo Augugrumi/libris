@@ -1,4 +1,4 @@
-package it.polpetta.libris.utils.webSocket.SSL;
+package it.polpetta.libris.utils.SSL;
 
 import javax.net.ssl.SSLContext;
 

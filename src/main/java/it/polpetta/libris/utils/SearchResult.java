@@ -1,4 +1,4 @@
-package it.polpetta.libris.google.imageSearch;
+package it.polpetta.libris.utils;
 
 import java.util.ArrayList;
 

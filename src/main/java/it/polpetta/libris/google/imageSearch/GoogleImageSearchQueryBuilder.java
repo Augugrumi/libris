@@ -5,6 +5,7 @@ import it.polpetta.libris.IQueryBuilder;
 import it.polpetta.libris.google.imageSearch.searchers.AbstractFactoryMethodSearcher;
 import it.polpetta.libris.google.imageSearch.searchers.ISearcher;
 import it.polpetta.libris.google.imageSearch.searchers.URLFactoryMethodSearcher;
+import it.polpetta.libris.utils.SearchResult;
 
 import java.io.File;
 import java.io.IOException;
