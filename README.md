@@ -18,6 +18,7 @@ This project uses _Maven_ to build the project. In the project root in order to 
 ```
 mvn compile
 ```
+N.B.: `libris` needs at least Java v7 in order to compile! Previous versions won't work.
 
 ## Testing
 To run the unit tests:

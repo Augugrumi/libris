@@ -10,8 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-import org.json.*;
-
 
 /**
  * Created by davide on 28/04/17.
@@ -49,7 +47,7 @@ public class GoogleImageSearchQueryBuilder implements IQueryBuilder {
 
         ISearcher searcher = null;
         AbstractFactoryMethodSearcher factory;
-        JSONObject res = null;
+        SearchResult res = null;
 
         // FIXME
         if (link != null) {

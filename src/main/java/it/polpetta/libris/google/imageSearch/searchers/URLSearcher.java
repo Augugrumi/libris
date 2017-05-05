@@ -1,7 +1,9 @@
 package it.polpetta.libris.google.imageSearch.searchers;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import it.polpetta.libris.google.imageSearch.Coordinates;
-import org.json.*;
+import it.polpetta.libris.google.imageSearch.SearchResult;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
@@ -14,6 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+
 
 /**
  * Created by davide on 28/04/17.
@@ -42,9 +45,11 @@ class URLSearcher implements ISearcher {
         this.location = location;
     }
 
-    public JSONObject search() throws IOException {
+    public SearchResult search() throws IOException {
 
-        JSONObject res = new JSONObject();
+        SearchResult.Builder res;
+
+        res = new SearchResult.Builder();
 
         URLConnection toDownload = link.openConnection();
         toDownload.setRequestProperty(userAgentProperty, userAgentValue);
@@ -69,13 +74,13 @@ class URLSearcher implements ISearcher {
 
         Elements body = parsedPage.body().children();
 
-        res.put("best_guess", retrieveBestGuessFromHTML(body));
-        res.put("links", retrieveLinksFromHTML(body));
-        res.put("descriptions", retrieveDescriptionFromHTML(body));
-        res.put("titles", retrieveTitleFromHTML(body));
-        res.put("similar_images", retrieveSimilarImageFromHTML(body));
+        res.withBestGuess(retrieveBestGuessFromHTML(body))
+                .withLinks(retrieveLinksFromHTML(body))
+                .withDescriptions(retrieveDescriptionFromHTML(body))
+                .withTitles(retrieveTitleFromHTML(body))
+                .withSimilarImages(retrieveSimilarImageFromHTML(body));
 
-        return res;
+        return res.build();
     }
 
     private String retrieveBestGuessFromHTML(Elements body) {
@@ -99,12 +104,13 @@ class URLSearcher implements ISearcher {
                     ! link.hasAttr("data-ved")) {
                 String toCheck = link.attr("href");
                 if (!linkRes.contains(toCheck)) {
-                    try {
+                    linkRes.add(toCheck);
+                    /*try {
                         new URL(toCheck);
                         linkRes.add(toCheck);
                     } catch (MalformedURLException e) {
                         printMalformedError(e);
-                    }
+                    }*/
                 }
 
             }
@@ -136,11 +142,15 @@ class URLSearcher implements ISearcher {
         ArrayList<String> imageRes = new ArrayList<String>();
         Elements images = body.select("div.rg_meta");
 
-        JSONObject jsImage;
+        Gson gson = new Gson();
+        JsonObject jsImage;
         String imageUrl;
         for (Element image : images){
-            jsImage = new JSONObject(image.text());
+            /*jsImage = new JSONObject(image.text());
             imageUrl = jsImage.getString("ou");
+            */
+            jsImage = gson.fromJson(image.text(), JsonObject.class);
+            imageUrl = jsImage.get("ou").getAsString();
             try {
                 new URL(imageUrl);
                 imageRes.add(imageUrl);
