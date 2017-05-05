@@ -41,7 +41,7 @@ class URLSearcher implements ISearcher {
 
             // Request headers - replace this example key with your valid subscription key.
             request.setHeader("Content-Type", "application/json");
-            request.setHeader("Ocp-Apim-Subscription-Key", "13hc77781f7e4b19b5fcdd72a8df7156");
+            request.setHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
 
             // Request body. Replace the example URL with the URL for the JPEG image of a celebrity.
             StringEntity reqEntity = new StringEntity("{\"url\":\"http://example.com/images/test.jpg\"}");
