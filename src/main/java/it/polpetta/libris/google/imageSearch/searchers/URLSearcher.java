@@ -56,7 +56,7 @@ class URLSearcher implements ISearcher {
 
         BufferedReader in = new BufferedReader(new InputStreamReader(toDownload.getInputStream()));
 
-        String htmlPage= "";
+        StringBuilder htmlPageBuilder = new StringBuilder();
         boolean iterate = true;
 
         while (iterate) {
@@ -65,9 +65,10 @@ class URLSearcher implements ISearcher {
             if (nextLine == null) {
                 iterate = false;
             } else {
-                htmlPage += nextLine;
+                htmlPageBuilder.append(nextLine);
             }
         }
+        String htmlPage = htmlPageBuilder.toString();
 
         // TODO parse the HTML page
         Document parsedPage = Parser.parse(htmlPage, link.toString());
