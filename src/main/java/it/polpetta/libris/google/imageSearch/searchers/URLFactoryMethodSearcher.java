@@ -1,6 +1,7 @@
 package it.polpetta.libris.google.imageSearch.searchers;
 
 import it.polpetta.libris.google.imageSearch.Coordinates;
+import it.polpetta.libris.google.imageSearch.IGoogleImageSearcher;
 import it.polpetta.libris.utils.AbstractFactoryMethodSearcher;
 import it.polpetta.libris.utils.ISearcher;
 
@@ -20,7 +21,7 @@ public class URLFactoryMethodSearcher extends AbstractFactoryMethodSearcher {
     }
 
     @Override
-    public ISearcher makeSearcher() {
+    public IGoogleImageSearcher makeSearcher() {
         return new URLSearcher(link, location);
     }
 

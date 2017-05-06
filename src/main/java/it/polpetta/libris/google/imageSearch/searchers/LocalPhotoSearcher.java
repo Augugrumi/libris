@@ -1,8 +1,8 @@
 package it.polpetta.libris.google.imageSearch.searchers;
 
 import it.polpetta.libris.google.imageSearch.Coordinates;
-import it.polpetta.libris.utils.ISearcher;
-import it.polpetta.libris.utils.SearchResult;
+import it.polpetta.libris.google.imageSearch.IGoogleImageSearcher;
+import it.polpetta.libris.utils.SearchResult.googleImageSearch.IGoogleImageSearchResult;
 
 import java.io.IOException;
 import java.net.URI;
@@ -10,7 +10,7 @@ import java.net.URI;
 /**
  * Created by dpolonio on 03/05/17.
  */
-class LocalPhotoSearcher implements ISearcher {
+class LocalPhotoSearcher implements IGoogleImageSearcher {
 
     private URI path = null;
 
@@ -18,7 +18,7 @@ class LocalPhotoSearcher implements ISearcher {
         this.path = pathToImage;
     }
 
-    public SearchResult search() throws IOException {
+    public IGoogleImageSearchResult search() throws IOException {
 
         // TODO
 

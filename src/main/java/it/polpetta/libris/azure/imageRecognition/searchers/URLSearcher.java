@@ -1,7 +1,7 @@
 package it.polpetta.libris.azure.imageRecognition.searchers;
 
 import it.polpetta.libris.utils.ISearcher;
-import it.polpetta.libris.utils.SearchResult;
+import it.polpetta.libris.utils.SearchResult.ISearchResult;
 import java.net.URI;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -25,9 +25,9 @@ class URLSearcher implements ISearcher {
         this.subscriptionKey = subscriptionKey;
     }
 
-    public SearchResult search() throws IOException {
+    public ISearchResult search() throws IOException {
         HttpClient httpclient = new DefaultHttpClient();
-        SearchResult res = null;
+        ISearchResult res = null;
 
         try {
             URIBuilder builder = new URIBuilder("https://westus.api.cognitive.microsoft.com/vision/v1.0/describe");
@@ -52,7 +52,7 @@ class URLSearcher implements ISearcher {
 
             if (entity != null) {
 
-                // TODO create the SearchResult to return.
+                // TODO create the ISearchResult to return.
 
                 System.out.println(EntityUtils.toString(entity));
             }

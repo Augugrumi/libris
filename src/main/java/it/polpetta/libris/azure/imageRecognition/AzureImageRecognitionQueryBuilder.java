@@ -5,7 +5,7 @@ import it.polpetta.libris.IQueryBuilder;
 import it.polpetta.libris.azure.imageRecognition.searchers.URLFactoryMethodSearcher;
 import it.polpetta.libris.google.imageSearch.Coordinates;
 import it.polpetta.libris.utils.ISearcher;
-import it.polpetta.libris.utils.SearchResult;
+import it.polpetta.libris.utils.SearchResult.ISearchResult;
 
 import java.io.File;
 import java.net.URL;
@@ -49,7 +49,7 @@ public class AzureImageRecognitionQueryBuilder implements IQueryBuilder {
 
         ISearcher searcher = null;
         URLFactoryMethodSearcher factoryMethodSearcher;
-        SearchResult res = null;
+        ISearchResult res = null;
 
         return null;
     }

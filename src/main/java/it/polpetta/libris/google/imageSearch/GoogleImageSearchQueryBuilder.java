@@ -5,7 +5,8 @@ import it.polpetta.libris.IQueryBuilder;
 import it.polpetta.libris.utils.AbstractFactoryMethodSearcher;
 import it.polpetta.libris.utils.ISearcher;
 import it.polpetta.libris.google.imageSearch.searchers.URLFactoryMethodSearcher;
-import it.polpetta.libris.utils.SearchResult;
+import it.polpetta.libris.utils.SearchResult.ISearchResult;
+import it.polpetta.libris.utils.SearchResult.googleImageSearch.IGoogleImageSearchResult;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,15 +45,14 @@ public class GoogleImageSearchQueryBuilder implements IQueryBuilder {
 
     public IQuery runQuery() {
 
-        // do the query
-
         ISearcher searcher = null;
         AbstractFactoryMethodSearcher factory;
-        SearchResult res = null;
+        ISearchResult res = null;
 
         // FIXME
         if (link != null) {
             factory = new URLFactoryMethodSearcher(location, link);
+            // In order to use IGoogleImageSearcher we should downcast here!
             searcher = factory.makeSearcher();
         } else if (photo != null) {
             // TODO

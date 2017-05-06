@@ -1,6 +1,6 @@
 package it.polpetta.libris.utils;
 
-import it.polpetta.libris.utils.SearchResult;
+import it.polpetta.libris.utils.SearchResult.ISearchResult;
 
 import java.io.IOException;
 
@@ -9,5 +9,5 @@ import java.io.IOException;
  */
 public interface ISearcher {
 
-    SearchResult search() throws IOException;
+    ISearchResult search() throws IOException;
 }
