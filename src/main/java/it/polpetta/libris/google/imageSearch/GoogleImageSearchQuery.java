@@ -9,14 +9,14 @@ import it.polpetta.libris.utils.SearchResult.googleImageSearch.IGoogleImageSearc
  */
 public class GoogleImageSearchQuery implements IQuery {
 
-    private ISearchResult res;
+    private IGoogleImageSearchResult res;
 
-    public GoogleImageSearchQuery(ISearchResult res){
+    public GoogleImageSearchQuery(IGoogleImageSearchResult res){
 
         this.res = res;
     }
 
-    public ISearchResult getContest() {
+    public IGoogleImageSearchResult getContest() {
         return res;
     }
 }
