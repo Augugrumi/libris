@@ -1,4 +1,4 @@
-package it.polpetta.libris.google.imageSearch;
+package it.polpetta.libris.utils;
 
 /**
  * Created by davide on 28/04/17.

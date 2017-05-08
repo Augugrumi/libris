@@ -1,5 +1,7 @@
 package it.polpetta.libris.utils.SearchResult.googleImageSearch;
 
+import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
+
 import java.util.ArrayList;
 
 /**

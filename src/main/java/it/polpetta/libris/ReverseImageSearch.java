@@ -1,7 +1,8 @@
 package it.polpetta.libris;
 
-import it.polpetta.libris.azure.AzureAbstractFactory;
-import it.polpetta.libris.google.GoogleAbstractFactory;
+import it.polpetta.libris.image.azure.AzureAbstractFactory;
+import it.polpetta.libris.contract.IAbstractFactoryReverseSearchProvider;
+import it.polpetta.libris.image.google.GoogleAbstractFactory;
 
 /**
  * Created by davide on 28/04/17.

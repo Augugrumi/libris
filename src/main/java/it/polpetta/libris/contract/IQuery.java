@@ -1,11 +1,11 @@
-package it.polpetta.libris;
+package it.polpetta.libris.contract;
 
-
-import it.polpetta.libris.utils.SearchResult.ISearchResult;
 
 /**
  * Created by davide on 28/04/17.
  */
+
+// todo delete me
 public interface IQuery {
 
     ISearchResult getContest();

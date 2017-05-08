@@ -1,8 +1,8 @@
-package it.polpetta.libris.azure;
+package it.polpetta.libris.image.azure;
 
-import it.polpetta.libris.IAbstractFactoryReverseSearchProvider;
-import it.polpetta.libris.IQueryBuilder;
-import it.polpetta.libris.azure.imageRecognition.AzureImageRecognitionQueryBuilder;
+import it.polpetta.libris.contract.IAbstractFactoryReverseSearchProvider;
+import it.polpetta.libris.contract.IQueryBuilder;
+import it.polpetta.libris.image.azure.imageRecognition.AzureImageRecognitionQueryBuilder;
 
 /**
  * Created by dpolonio on 05/05/17.

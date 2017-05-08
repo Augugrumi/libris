@@ -1,12 +1,13 @@
-package it.polpetta.libris.google.imageSearch;
+package it.polpetta.libris.image.google;
 
-import it.polpetta.libris.IQuery;
-import it.polpetta.libris.IQueryBuilder;
-import it.polpetta.libris.utils.AbstractFactoryMethodSearcher;
-import it.polpetta.libris.utils.ISearcher;
-import it.polpetta.libris.google.imageSearch.searchers.URLFactoryMethodSearcher;
-import it.polpetta.libris.utils.SearchResult.ISearchResult;
-import it.polpetta.libris.utils.SearchResult.googleImageSearch.IGoogleImageSearchResult;
+import it.polpetta.libris.contract.IQuery;
+import it.polpetta.libris.contract.IQueryBuilder;
+import it.polpetta.libris.contract.AbstractFactoryMethodSearcher;
+import it.polpetta.libris.contract.ISearcher;
+import it.polpetta.libris.image.contract.IImageQueryBuilder;
+import it.polpetta.libris.image.google.searchers.URLFactoryMethodSearcher;
+import it.polpetta.libris.contract.ISearchResult;
+import it.polpetta.libris.utils.Coordinates;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +17,7 @@ import java.net.URL;
 /**
  * Created by davide on 28/04/17.
  */
-public class GoogleImageSearchQueryBuilder implements IQueryBuilder {
+public class GoogleImageSearchQueryBuilder implements IImageQueryBuilder {
 
     private File photo = null;
     private URL link = null;

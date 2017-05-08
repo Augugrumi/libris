@@ -1,7 +1,7 @@
-package it.polpetta.libris.azure.imageRecognition.searchers;
+package it.polpetta.libris.image.azure.imageRecognition.searchers;
 
-import it.polpetta.libris.utils.ISearcher;
-import it.polpetta.libris.utils.SearchResult.ISearchResult;
+import it.polpetta.libris.contract.ISearcher;
+import it.polpetta.libris.contract.ISearchResult;
 import java.net.URI;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

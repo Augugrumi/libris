@@ -1,8 +1,8 @@
-package it.polpetta.libris.google.imageSearch.searchers;
+package it.polpetta.libris.image.google.searchers;
 
-import it.polpetta.libris.google.imageSearch.Coordinates;
-import it.polpetta.libris.google.imageSearch.IGoogleImageSearcher;
-import it.polpetta.libris.utils.SearchResult.googleImageSearch.IGoogleImageSearchResult;
+import it.polpetta.libris.utils.Coordinates;
+import it.polpetta.libris.image.google.IGoogleImageSearcher;
+import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
 
 import java.io.IOException;
 import java.net.URI;

@@ -1,4 +1,4 @@
-package it.polpetta.libris;
+package it.polpetta.libris.contract;
 
 import java.io.File;
 import java.net.URL;

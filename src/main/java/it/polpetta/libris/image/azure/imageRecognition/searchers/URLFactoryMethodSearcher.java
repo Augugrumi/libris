@@ -1,8 +1,8 @@
-package it.polpetta.libris.azure.imageRecognition.searchers;
+package it.polpetta.libris.image.azure.imageRecognition.searchers;
 
-import it.polpetta.libris.google.imageSearch.Coordinates;
-import it.polpetta.libris.utils.AbstractFactoryMethodSearcher;
-import it.polpetta.libris.utils.ISearcher;
+import it.polpetta.libris.utils.Coordinates;
+import it.polpetta.libris.contract.AbstractFactoryMethodSearcher;
+import it.polpetta.libris.contract.ISearcher;
 
 /**
  * Created by dpolonio on 05/05/17.
