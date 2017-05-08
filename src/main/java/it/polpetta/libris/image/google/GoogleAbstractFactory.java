@@ -1,8 +1,7 @@
-package it.polpetta.libris.google;
+package it.polpetta.libris.image.google;
 
-import it.polpetta.libris.IAbstractFactoryReverseSearchProvider;
-import it.polpetta.libris.IQueryBuilder;
-import it.polpetta.libris.google.imageSearch.GoogleImageSearchQueryBuilder;
+import it.polpetta.libris.contract.IAbstractFactoryReverseSearchProvider;
+import it.polpetta.libris.contract.IQueryBuilder;
 
 /**
  * Created by davide on 29/04/17.

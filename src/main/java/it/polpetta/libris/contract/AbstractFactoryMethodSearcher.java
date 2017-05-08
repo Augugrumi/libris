@@ -1,11 +1,13 @@
-package it.polpetta.libris.utils;
+package it.polpetta.libris.contract;
 
 
-import it.polpetta.libris.google.imageSearch.Coordinates;
+import it.polpetta.libris.utils.Coordinates;
 
 /**
  * Created by davide on 28/04/17.
  */
+
+// TODO: 08/05/17 delete me
 public abstract class AbstractFactoryMethodSearcher {
 
     protected Coordinates location = null;

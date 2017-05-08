@@ -1,10 +1,11 @@
-package it.polpetta.libris.google.imageSearch.searchers;
+package it.polpetta.libris.image.google.searchers;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import it.polpetta.libris.google.imageSearch.Coordinates;
-import it.polpetta.libris.utils.ISearcher;
-import it.polpetta.libris.utils.SearchResult;
+import it.polpetta.libris.utils.Coordinates;
+import it.polpetta.libris.image.google.IGoogleImageSearcher;
+import it.polpetta.libris.utils.SearchResult.SearchResultBuilderAbstractFactory;
+import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 /**
  * Created by davide on 28/04/17.
  */
-class URLSearcher implements ISearcher {
+class URLSearcher implements IGoogleImageSearcher {
 
     private static final String googleImageSearch = "https://www.google.com/searchbyimage?&image_url=";
     private static final String userAgentProperty = "User-Agent";
@@ -46,11 +47,7 @@ class URLSearcher implements ISearcher {
         this.location = location;
     }
 
-    public SearchResult search() throws IOException {
-
-        SearchResult.Builder res;
-
-        res = new SearchResult.Builder();
+    public IGoogleImageSearchResult search() throws IOException {
 
         URLConnection toDownload = link.openConnection();
         toDownload.setRequestProperty(userAgentProperty, userAgentValue);
@@ -70,18 +67,19 @@ class URLSearcher implements ISearcher {
             }
         }
 
-        // TODO parse the HTML page
         Document parsedPage = Parser.parse(htmlPage, link.toString());
 
         Elements body = parsedPage.body().children();
 
-        res.withBestGuess(retrieveBestGuessFromHTML(body))
-                .withLinks(retrieveLinksFromHTML(body))
-                .withDescriptions(retrieveDescriptionFromHTML(body))
-                .withTitles(retrieveTitleFromHTML(body))
-                .withSimilarImages(retrieveSimilarImageFromHTML(body));
+        return SearchResultBuilderAbstractFactory
+                .makeGoogleImageSearchBuilder()
+                .addBestGuess(retrieveBestGuessFromHTML(body))
+                .addLinks(retrieveLinksFromHTML(body))
+                .addDescriptions(retrieveDescriptionFromHTML(body))
+                .addTitles(retrieveTitleFromHTML(body))
+                .addSimilarImages(retrieveSimilarImageFromHTML(body))
+                .getSearchResult();
 
-        return res.build();
     }
 
     private String retrieveBestGuessFromHTML(Elements body) {
@@ -106,12 +104,6 @@ class URLSearcher implements ISearcher {
                 String toCheck = link.attr("href");
                 if (!linkRes.contains(toCheck)) {
                     linkRes.add(toCheck);
-                    /*try {
-                        new URL(toCheck);
-                        linkRes.add(toCheck);
-                    } catch (MalformedURLException e) {
-                        printMalformedError(e);
-                    }*/
                 }
 
             }
@@ -147,9 +139,7 @@ class URLSearcher implements ISearcher {
         JsonObject jsImage;
         String imageUrl;
         for (Element image : images){
-            /*jsImage = new JSONObject(image.text());
-            imageUrl = jsImage.getString("ou");
-            */
+
             jsImage = gson.fromJson(image.text(), JsonObject.class);
             imageUrl = jsImage.get("ou").getAsString();
             try {
