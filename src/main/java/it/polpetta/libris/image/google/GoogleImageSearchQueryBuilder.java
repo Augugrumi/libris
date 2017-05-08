@@ -1,10 +1,10 @@
 package it.polpetta.libris.image.google;
 
-import it.polpetta.libris.contract.IQuery;
 import it.polpetta.libris.contract.IQueryBuilder;
 import it.polpetta.libris.contract.AbstractFactoryMethodSearcher;
 import it.polpetta.libris.contract.ISearcher;
 import it.polpetta.libris.image.contract.IImageQueryBuilder;
+import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
 import it.polpetta.libris.image.google.searchers.URLFactoryMethodSearcher;
 import it.polpetta.libris.contract.ISearchResult;
 import it.polpetta.libris.utils.Coordinates;
@@ -23,19 +23,6 @@ public class GoogleImageSearchQueryBuilder implements IImageQueryBuilder {
     private URL link = null;
     private Coordinates location = null;
 
-    public IQueryBuilder setPhoto(File file) {
-
-        photo = file;
-
-        return this;
-    }
-
-    public IQueryBuilder setPhoto(URL linkToImage) {
-
-        link = linkToImage;
-
-        return this;
-    }
 
     public IQueryBuilder setLocation(float x, float y) {
 
@@ -44,11 +31,23 @@ public class GoogleImageSearchQueryBuilder implements IImageQueryBuilder {
         return this;
     }
 
-    public IQuery runQuery() {
+    @Override
+    public IQueryBuilder setImage(File file) {
+        photo = file;
+        return this;
+    }
 
-        ISearcher searcher = null;
+    @Override
+    public IQueryBuilder setImage(URL linkToImage) {
+        link = linkToImage;
+        return this;
+    }
+
+    public IGoogleImageSearchResult runQuery() {
+
+        IGoogleImageSearcher searcher = null;
         AbstractFactoryMethodSearcher factory;
-        ISearchResult res = null;
+        IGoogleImageSearchResult res = null;
 
         // FIXME
         if (link != null) {
@@ -70,6 +69,6 @@ public class GoogleImageSearchQueryBuilder implements IImageQueryBuilder {
             e.printStackTrace();
         }
 
-        return new GoogleImageSearchQuery(res);
+        return res;
     }
 }

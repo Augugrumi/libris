@@ -1,6 +1,5 @@
 package it.polpetta.libris.image.azure.imageRecognition;
 
-import it.polpetta.libris.contract.IQuery;
 import it.polpetta.libris.contract.IQueryBuilder;
 import it.polpetta.libris.image.azure.imageRecognition.searchers.URLFactoryMethodSearcher;
 import it.polpetta.libris.utils.Coordinates;
