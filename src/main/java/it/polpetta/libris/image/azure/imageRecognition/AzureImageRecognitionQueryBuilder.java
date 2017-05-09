@@ -12,7 +12,7 @@ import java.net.URL;
 /**
  * Created by dpolonio on 05/05/17.
  */
-public class AzureImageRecognitionQueryBuilder implements IQueryBuilder {
+public abstract class AzureImageRecognitionQueryBuilder implements IQueryBuilder {
 
     private File photo = null;
     private URL link = null;
@@ -44,12 +44,12 @@ public class AzureImageRecognitionQueryBuilder implements IQueryBuilder {
         return this;
     }
 
-    public IQuery runQuery () {
+    /*public IQuery runQuery () {
 
         ISearcher searcher = null;
         URLFactoryMethodSearcher factoryMethodSearcher;
         ISearchResult res = null;
 
         return null;
-    }
+    }*/
 }

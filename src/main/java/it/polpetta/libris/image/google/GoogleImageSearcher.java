@@ -2,6 +2,7 @@ package it.polpetta.libris.image.google;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import it.polpetta.libris.contract.ISearchResult;
 import it.polpetta.libris.image.contract.AbstractURLImageSearcher;
 import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
 import it.polpetta.libris.utils.Coordinates;
@@ -11,9 +12,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -35,38 +34,25 @@ public class GoogleImageSearcher extends AbstractURLImageSearcher {
 
 
     GoogleImageSearcher (URL pathToImage, Coordinates location) {
-        try {
-            this.link = new URL( googleImageSearch + pathToImage.toString());
-
-        } catch (MalformedURLException e) {
-
-            System.err.println("The URL provided it's not correct!");
-            e.printStackTrace();
-        }
-        this.location = location;
+        super(AbstractURLImageSearcher.stringToURL(googleImageSearch + pathToImage.toString()),
+                location);
     }
 
-    public IGoogleImageSearchResult search() throws IOException {
-
-        URLConnection toDownload = link.openConnection();
-        toDownload.setRequestProperty(userAgentProperty, userAgentValue);
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(toDownload.getInputStream()));
-
-        String htmlPage= "";
-        boolean iterate = true;
-
-        while (iterate) {
-            String nextLine = in.readLine();
-
-            if (nextLine == null) {
-                iterate = false;
-            } else {
-                htmlPage += nextLine;
-            }
+    @Override
+    protected URLConnection setConnectionParameters() {
+        URLConnection toDownload = null;
+        try {
+            toDownload = link.openConnection();
+            toDownload.setRequestProperty(userAgentProperty, userAgentValue);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return toDownload;
+    }
 
-        Document parsedPage = Parser.parse(htmlPage, link.toString());
+    @Override
+    protected ISearchResult parseResult(String response) {
+        Document parsedPage = Parser.parse(response, link.toString());
 
         Elements body = parsedPage.body().children();
 
@@ -78,7 +64,10 @@ public class GoogleImageSearcher extends AbstractURLImageSearcher {
                 .addTitles(retrieveTitleFromHTML(body))
                 .addSimilarImages(retrieveSimilarImageFromHTML(body))
                 .getSearchResult();
+    }
 
+    public IGoogleImageSearchResult search() throws IOException {
+        return (IGoogleImageSearchResult) super.search();
     }
 
     private String retrieveBestGuessFromHTML(Elements body) {
@@ -151,9 +140,4 @@ public class GoogleImageSearcher extends AbstractURLImageSearcher {
         return imageRes;
     }
 
-    private void printMalformedError (MalformedURLException e) {
-
-        System.err.println("An error occurred parsing the URL!");
-        e.printStackTrace();
-    }
 }

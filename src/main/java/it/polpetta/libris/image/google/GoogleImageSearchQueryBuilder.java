@@ -45,7 +45,7 @@ public class GoogleImageSearchQueryBuilder implements IImageQueryBuilder {
 
     public IGoogleImageSearchResult runQuery() {
 
-        IGoogleImageSearcher searcher = null;
+        /*IGoogleImageSearcher searcher = null;
         AbstractFactoryMethodSearcher factory;
         IGoogleImageSearchResult res = null;
 
@@ -69,6 +69,7 @@ public class GoogleImageSearchQueryBuilder implements IImageQueryBuilder {
             e.printStackTrace();
         }
 
-        return res;
+        return res;*/
+        return null;
     }
 }

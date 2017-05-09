@@ -10,6 +10,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -26,7 +27,7 @@ class URLSearcher implements ISearcher {
     }
 
     public ISearchResult search() throws IOException {
-        HttpClient httpclient = new DefaultHttpClient();
+        HttpClient httpclient = HttpClientBuilder.create().build();
         ISearchResult res = null;
 
         try {
