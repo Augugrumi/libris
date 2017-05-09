@@ -1,4 +1,4 @@
-package it.polpetta.libris.image.azure;
+package it.polpetta.libris.image.azure.imageRecognition.searchers;
 
 import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
 import it.polpetta.libris.image.contract.AbstractURLImageSearcher;
@@ -15,7 +15,7 @@ import java.net.URLConnection;
 /**
  * Created by zanna on 09/05/17.
  */
-public class AzureImageSearcher extends AbstractURLImageSearcher {
+public class URLAzureImageSearcher extends AbstractURLImageSearcher {
     private static final String azureImageSearch =
             "https://westus.api.cognitive.microsoft.com/vision/v1.0/describe";
     private static final String contentTypeAttribute = "Content-Type";
@@ -24,7 +24,7 @@ public class AzureImageSearcher extends AbstractURLImageSearcher {
     private static String subscriptionKey;
     private URL imagePath;
 
-    AzureImageSearcher(URL imagePath, Coordinates location) {
+    URLAzureImageSearcher(URL imagePath, Coordinates location) {
         super(stringToURL(azureImageSearch), location);
         this.imagePath = imagePath;
     }

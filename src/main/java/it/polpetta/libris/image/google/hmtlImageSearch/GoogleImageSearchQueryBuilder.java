@@ -1,16 +1,11 @@
-package it.polpetta.libris.image.google;
+package it.polpetta.libris.image.google.hmtlImageSearch;
 
 import it.polpetta.libris.contract.IQueryBuilder;
-import it.polpetta.libris.contract.AbstractFactoryMethodSearcher;
-import it.polpetta.libris.contract.ISearcher;
 import it.polpetta.libris.image.contract.IImageQueryBuilder;
 import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
-import it.polpetta.libris.image.google.searchers.URLFactoryMethodSearcher;
-import it.polpetta.libris.contract.ISearchResult;
 import it.polpetta.libris.utils.Coordinates;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 
 

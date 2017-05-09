@@ -17,11 +17,9 @@ import java.net.URLConnection;
 public abstract class AbstractURLSearcher implements ISearcher {
 
     protected URL link;
-    protected Coordinates location = null;
 
-    public AbstractURLSearcher(URL link, Coordinates location) {
+    public AbstractURLSearcher(URL link) {
         this.link = link;
-        this.location = location;
     }
 
     protected static void printMalformedError (MalformedURLException e) {

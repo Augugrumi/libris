@@ -1,9 +1,9 @@
-package it.polpetta.libris.image.google.searchers;
+package it.polpetta.libris.image.google.hmtlImageSearch.searchers;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import it.polpetta.libris.utils.Coordinates;
-import it.polpetta.libris.image.google.IGoogleImageSearcher;
+import it.polpetta.libris.image.google.contract.IGoogleImageSearcher;
 import it.polpetta.libris.utils.SearchResult.SearchResultBuilderAbstractFactory;
 import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
 import org.jsoup.nodes.Document;
@@ -23,6 +23,9 @@ import java.util.ArrayList;
 /**
  * Created by davide on 28/04/17.
  */
+
+// FIXME REMOVE ME I'M NOT USEFUL ANYMORE, USR URLGOOGLEIMAGESEARCHER INSTEAD
+@Deprecated
 class URLSearcher implements IGoogleImageSearcher {
 
     private static final String googleImageSearch = "https://www.google.com/searchbyimage?&image_url=";

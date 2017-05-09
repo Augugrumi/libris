@@ -1,10 +1,7 @@
 package it.polpetta.libris.image.azure.imageRecognition;
 
 import it.polpetta.libris.contract.IQueryBuilder;
-import it.polpetta.libris.image.azure.imageRecognition.searchers.URLFactoryMethodSearcher;
 import it.polpetta.libris.utils.Coordinates;
-import it.polpetta.libris.contract.ISearcher;
-import it.polpetta.libris.contract.ISearchResult;
 
 import java.io.File;
 import java.net.URL;

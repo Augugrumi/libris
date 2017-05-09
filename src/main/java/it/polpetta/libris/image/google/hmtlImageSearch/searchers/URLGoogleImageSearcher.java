@@ -1,4 +1,4 @@
-package it.polpetta.libris.image.google;
+package it.polpetta.libris.image.google.hmtlImageSearch.searchers;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 /**
  * Created by zanna on 08/05/17.
  */
-public class GoogleImageSearcher extends AbstractURLImageSearcher {
+public class URLGoogleImageSearcher extends AbstractURLImageSearcher {
 
     private static final String googleImageSearch = "https://www.google.com/searchbyimage?&image_url=";
     private static final String userAgentProperty = "User-Agent";
@@ -29,7 +29,7 @@ public class GoogleImageSearcher extends AbstractURLImageSearcher {
             "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) " +
                     "Chrome/23.0.1271.97 Safari/537.11";
 
-    GoogleImageSearcher (URL pathToImage, Coordinates location) {
+    URLGoogleImageSearcher(URL pathToImage, Coordinates location) {
         super(AbstractURLImageSearcher.stringToURL(googleImageSearch + pathToImage.toString()),
                 location);
     }

@@ -9,6 +9,6 @@ import java.util.ArrayList;
  */
 public interface IImageSearchResult extends ISearchResult {
     //TODO put in ISearchResult?
-    String bestGuess();
-    ArrayList<String> tags();
+    String getBestGuess();
+    ArrayList<String> getTags();
 }

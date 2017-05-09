@@ -56,6 +56,14 @@ class GoogleImageSearchResult implements IGoogleImageSearchResult {
         return bestGuess;
     }
 
+    public ArrayList<String> getTags() {
+
+        ArrayList<String> res = new ArrayList<String>();
+        res.add(getBestGuess());
+
+        return res;
+    }
+
     public ArrayList<String> getLinks() {
         return links;
     }
