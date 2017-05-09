@@ -17,39 +17,22 @@ public abstract class AzureImageRecognitionQueryBuilder implements IQueryBuilder
     private File photo = null;
     private URL link = null;
     private Coordinates location = null;
-    private String subscriptionKey = null;
 
-    public AzureImageRecognitionQueryBuilder (String subscriptionKey) {
-        this.subscriptionKey = subscriptionKey;
-    }
+    private AzureImageRecognitionQueryBuilder(){}
 
     public IQueryBuilder setPhoto(File file) {
-
         photo = file;
-
         return this;
     }
 
     public IQueryBuilder setPhoto(URL linkToImage) {
-
         link = linkToImage;
-
         return this;
     }
 
     public IQueryBuilder setLocation(float x, float y) {
-
         location = new Coordinates(x, y);
-
         return this;
     }
 
-    /*public IQuery runQuery () {
-
-        ISearcher searcher = null;
-        URLFactoryMethodSearcher factoryMethodSearcher;
-        ISearchResult res = null;
-
-        return null;
-    }*/
 }

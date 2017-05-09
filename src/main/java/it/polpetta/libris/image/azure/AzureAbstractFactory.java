@@ -17,8 +17,7 @@ public class AzureAbstractFactory implements IAbstractFactoryReverseSearchProvid
     }
 
     public IQueryBuilder imageSearchBuildQuery() {
-        //return new AzureImageRecognitionQueryBuilder(subscriptionKey);
-        return null;
+        return null; //new AzureImageRecognitionQueryBuilder(subscriptionKey);
     }
 
 }

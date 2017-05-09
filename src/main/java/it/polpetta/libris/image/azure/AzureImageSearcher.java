@@ -1,11 +1,13 @@
 package it.polpetta.libris.image.azure;
 
 import it.polpetta.libris.contract.ISearchResult;
+import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
 import it.polpetta.libris.image.contract.AbstractURLImageSearcher;
 import it.polpetta.libris.utils.Coordinates;
 import org.apache.http.util.Asserts;
 
 import javax.net.ssl.HttpsURLConnection;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -59,7 +61,12 @@ public class AzureImageSearcher extends AbstractURLImageSearcher {
     }
 
     @Override
-    protected ISearchResult parseResult(String response) {
+    public IAzureImageSearchResult search()  throws IOException {
+        return (IAzureImageSearchResult) super.search();
+    }
+
+    @Override
+    protected IAzureImageSearchResult parseResult(String response) {
         // TODO
         return null;
     }
