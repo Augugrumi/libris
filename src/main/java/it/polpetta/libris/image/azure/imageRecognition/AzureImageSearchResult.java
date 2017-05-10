@@ -78,10 +78,10 @@ public class AzureImageSearchResult implements IAzureImageSearchResult {
         private String description;
 
         public Builder () {
-            bestGuess = "";
-            tags = new ArrayList<>();
-            otherTags = new ArrayList<>();
-            description = "";
+            this.bestGuess = "";
+            this.tags = new ArrayList<>();
+            this.otherTags = new ArrayList<>();
+            this.description = "";
         }
 
         public AzureImageSearchResult.Builder addBestGuess(String bestGuess) {
@@ -105,7 +105,12 @@ public class AzureImageSearchResult implements IAzureImageSearchResult {
         }
 
         public AzureImageSearchResult build() {
-            return new AzureImageSearchResult();
+            AzureImageSearchResult result = new AzureImageSearchResult();
+            result.bestGuess = this.bestGuess;
+            result.tags = this.tags;
+            result.otherTags = this.otherTags;
+            result.description = this.description;
+            return result;
         }
     }
 
