@@ -15,7 +15,17 @@ public class AzureImageSearchResult implements IAzureImageSearchResult {
     private ArrayList<String> otherTags;
     private String description;
 
-    private AzureImageSearchResult() {}
+    private AzureImageSearchResult(
+            String bestGuess,
+            ArrayList<String> tags,
+            ArrayList<String> otherTags,
+            String description
+    ) {
+        this.bestGuess = bestGuess;
+        this.tags = tags;
+        this.otherTags = otherTags;
+        this.description = description;
+    }
 
     @Override
     public String toJSONString() {
@@ -105,7 +115,12 @@ public class AzureImageSearchResult implements IAzureImageSearchResult {
         }
 
         public AzureImageSearchResult build() {
-            return new AzureImageSearchResult();
+            return new AzureImageSearchResult(
+                    bestGuess,
+                    tags,
+                    otherTags,
+                    description
+            );
         }
     }
 

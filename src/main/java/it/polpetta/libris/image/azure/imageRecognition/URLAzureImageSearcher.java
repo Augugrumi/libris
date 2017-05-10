@@ -94,8 +94,8 @@ public class URLAzureImageSearcher extends AbstractURLImageSearcher implements I
 
     private String retrieveDescriptionFromJson(JsonObject response) {
         JsonElement element = response.getAsJsonObject("description").getAsJsonArray("captions").get(0);
-        System.out.println(element);
-        JsonObject obj = element.getAsJsonObject().getAsJsonObject("text");
+        JsonElement obj = element.getAsJsonObject().get("text");
+
         return obj.getAsString();
     }
 
