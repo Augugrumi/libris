@@ -29,7 +29,7 @@ public class URLAzureImageSearcher extends AbstractURLImageSearcher implements I
         this.imagePath = imagePath;
     }
 
-    static void setSubscriptionKey(String key) {
+    public static void setSubscriptionKey(String key) {
         subscriptionKey = key;
     }
 
