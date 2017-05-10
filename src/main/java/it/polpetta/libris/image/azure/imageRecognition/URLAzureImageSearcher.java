@@ -51,9 +51,10 @@ public class URLAzureImageSearcher extends AbstractURLImageSearcher implements I
                 urlConnection.setDoOutput(true);
                 urlConnection.setDoInput(true);
                 urlConnection.connect();
+                String json = "{\"url\":\"" + imagePath + "\"}";
                 OutputStream os = urlConnection.getOutputStream();
                 PrintWriter writer = new PrintWriter(new OutputStreamWriter(os, "UTF-8"), true);
-                writer.print(link);
+                writer.print(json);
                 writer.close();
                 os.close();
             }
@@ -62,6 +63,8 @@ public class URLAzureImageSearcher extends AbstractURLImageSearcher implements I
         }
         return urlConnection;
     }
+
+
 
     @Override
     protected IAzureImageSearchResult parseResult(String response) {
