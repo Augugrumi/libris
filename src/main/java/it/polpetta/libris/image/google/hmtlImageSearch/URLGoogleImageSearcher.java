@@ -23,7 +23,7 @@ import java.util.ArrayList;
 /**
  * Created by zanna on 08/05/17.
  */
-public class URLGoogleImageSearcher extends AbstractURLImageSearcher {
+public class URLGoogleImageSearcher extends AbstractURLImageSearcher implements IGoogleImageSearcher {
 
     private static final String googleImageSearch = "https://www.google.com/searchbyimage?&image_url=";
     private static final String userAgentProperty = "User-Agent";
@@ -192,7 +192,7 @@ public class URLGoogleImageSearcher extends AbstractURLImageSearcher {
 
         return res;*/
 
-            return null;
+            return new URLGoogleImageSearcher(link, null);
         }
     }
 

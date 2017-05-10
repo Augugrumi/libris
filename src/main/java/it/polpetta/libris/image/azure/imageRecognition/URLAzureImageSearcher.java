@@ -15,7 +15,7 @@ import java.net.URLConnection;
 /**
  * Created by zanna on 09/05/17.
  */
-public class URLAzureImageSearcher extends AbstractURLImageSearcher {
+public class URLAzureImageSearcher extends AbstractURLImageSearcher implements IAzureImageSearcher {
     private static final String azureImageSearch =
             "https://westus.api.cognitive.microsoft.com/vision/v1.0/describe";
     private static final String contentTypeAttribute = "Content-Type";
@@ -24,7 +24,7 @@ public class URLAzureImageSearcher extends AbstractURLImageSearcher {
     private static String subscriptionKey;
     private URL imagePath;
 
-    URLAzureImageSearcher(URL imagePath, Coordinates location) {
+    private URLAzureImageSearcher(URL imagePath, Coordinates location) {
         super(stringToURL(azureImageSearch), location);
         this.imagePath = imagePath;
     }
@@ -69,7 +69,7 @@ public class URLAzureImageSearcher extends AbstractURLImageSearcher {
         return (IAzureImageSearchResult) super.search();
     }
 
-    public class Builder implements IQueryBuilder {
+    public static class Builder implements IQueryBuilder {
 
         private File photo = null;
         private URL link = null;
@@ -96,7 +96,7 @@ public class URLAzureImageSearcher extends AbstractURLImageSearcher {
 
         @Override
         public IAzureImageSearcher build() {
-            return null;
+            return new URLAzureImageSearcher(link, null);
         }
     }
 }
