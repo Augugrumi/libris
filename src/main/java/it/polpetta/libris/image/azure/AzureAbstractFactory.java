@@ -18,6 +18,8 @@ public class AzureAbstractFactory implements IAbstractAzureImageFactoryReverseSe
 
     // TODO implement this beautiful method
     public URLAzureImageSearcher.Builder imageSearchBuildQuery() {
+
+        URLAzureImageSearcher.setSubscriptionKey(subscriptionKey);
         return new URLAzureImageSearcher.Builder();
     }
 
