@@ -1,5 +1,6 @@
 package it.polpetta.libris.image.azure.contract;
 
+import it.polpetta.libris.image.azure.imageRecognition.URLAzureImageSearcher;
 import it.polpetta.libris.image.contract.IAbstractImageFactoryReverseSearchProvider;
 
 /**
@@ -7,5 +8,5 @@ import it.polpetta.libris.image.contract.IAbstractImageFactoryReverseSearchProvi
  */
 public interface IAbstractAzureImageFactoryReverseSearchProvider extends IAbstractImageFactoryReverseSearchProvider {
 
-
+    URLAzureImageSearcher.Builder imageSearchBuildQuery();
 }
