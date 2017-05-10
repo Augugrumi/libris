@@ -1,14 +1,14 @@
-package it.polpetta.libris.image.azure.imageRecognition.searchers;
+package it.polpetta.libris.image.azure.imageRecognition;
 
+import it.polpetta.libris.contract.IQueryBuilder;
+import it.polpetta.libris.contract.ISearcher;
 import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
+import it.polpetta.libris.image.azure.contract.IAzureImageSearcher;
 import it.polpetta.libris.image.contract.AbstractURLImageSearcher;
 import it.polpetta.libris.utils.Coordinates;
 
 import javax.net.ssl.HttpsURLConnection;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -69,4 +69,34 @@ public class URLAzureImageSearcher extends AbstractURLImageSearcher {
         return (IAzureImageSearchResult) super.search();
     }
 
+    public class Builder implements IQueryBuilder {
+
+        private File photo = null;
+        private URL link = null;
+        private Coordinates location = null;
+
+        public Builder(){}
+
+        public Builder setLocation(float x, float y) {
+            location = new Coordinates(x, y);
+            return this;
+        }
+
+        @Override
+        public Builder setImage(File file) {
+            photo = file;
+            return this;
+        }
+
+        @Override
+        public Builder setImage(URL linkToImage) {
+            link = linkToImage;
+            return this;
+        }
+
+        @Override
+        public IAzureImageSearcher build() {
+            return null;
+        }
+    }
 }
