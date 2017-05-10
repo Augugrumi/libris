@@ -19,7 +19,34 @@ public class AzureImageSearchResult implements IAzureImageSearchResult {
 
     @Override
     public String toJSONString() {
-        return null;
+        StringBuilder builder = new StringBuilder();
+        builder.append("{")
+                .append("\"best_guess\":\"")
+                .append(bestGuess)
+                .append("\"")
+                .append(",")
+                .append("\"tags\":[")
+                .append(arrayListToString(tags))
+                .append("],")
+                .append("\"other_tags\":[")
+                .append(arrayListToString(otherTags))
+                .append("],")
+                .append("\"description\":\"")
+                .append(description)
+                .append("\"}");
+        return builder.toString();
+    }
+
+    private String arrayListToString(ArrayList<String> arrayList) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < arrayList.size(); i++) {
+            sb.append("\"");
+            sb.append(arrayList.get(i));
+            sb.append("\"");
+            if (i != arrayList.size() - 1)
+                sb.append(",");
+        }
+        return sb.toString();
     }
 
     @Override

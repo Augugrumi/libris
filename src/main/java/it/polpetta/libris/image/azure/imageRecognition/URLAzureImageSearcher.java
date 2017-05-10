@@ -10,6 +10,7 @@ import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
 import it.polpetta.libris.image.azure.contract.IAzureImageSearcher;
 import it.polpetta.libris.image.contract.AbstractURLImageSearcher;
 import it.polpetta.libris.utils.Coordinates;
+import org.apache.http.util.Asserts;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
  */
 public class URLAzureImageSearcher extends AbstractURLImageSearcher implements IAzureImageSearcher {
     private static final String azureImageSearch =
-            "https://westus.api.cognitive.microsoft.com/vision/v1.0/describe";
+            "https://westus.api.cognitive.microsoft.com/vision/v1.0/analyze?visualFeatures=Description%2CTags";
     private static final String contentTypeAttribute = "Content-Type";
     private static final String contentTypeValue = "application/json";
     private static final String authenticationAttribute = "Ocp-Apim-Subscription-Key";
@@ -94,9 +95,10 @@ public class URLAzureImageSearcher extends AbstractURLImageSearcher implements I
     }
 
     private String retrieveDescriptionFromJson(JsonObject response) {
-        JsonObject object = response.getAsJsonArray("captions")
-                .get(0).getAsJsonObject().getAsJsonObject("text");
-        return object.getAsString();
+        JsonElement element = response.getAsJsonObject("description").getAsJsonArray("captions").get(0);
+        System.out.println(element);
+        JsonObject obj = element.getAsJsonObject().getAsJsonObject("text");
+        return obj.getAsString();
     }
 
     private ArrayList<String> retrieveTagsFromJson(JsonObject response) {
