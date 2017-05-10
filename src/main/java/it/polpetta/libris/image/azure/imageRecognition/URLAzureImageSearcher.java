@@ -1,5 +1,9 @@
 package it.polpetta.libris.image.azure.imageRecognition;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import it.polpetta.libris.contract.IQueryBuilder;
 import it.polpetta.libris.contract.ISearcher;
 import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
@@ -11,6 +15,7 @@ import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 
 /**
  * Created by zanna on 09/05/17.
@@ -60,8 +65,49 @@ public class URLAzureImageSearcher extends AbstractURLImageSearcher implements I
 
     @Override
     protected IAzureImageSearchResult parseResult(String response) {
-        // TODO
+        Gson gson = new Gson();
+        JsonObject jsonResponse = gson.fromJson(response, JsonObject.class);
+        return new AzureImageSearchResult.Builder()
+                .addBestGuess(retrieveBestGuessFromJson(jsonResponse))
+                .addDescription(retrieveDescriptionFromJson(jsonResponse))
+                .addTags(retrieveTagsFromJson(jsonResponse))
+                .addOtherTags(retrieveOtherTagsFromJson(jsonResponse))
+                .build();
+    }
+
+    private String retrieveBestGuessFromJson(JsonObject response) {
+        JsonArray tagArray = response.getAsJsonArray("tags");
+        float confidence = 0;
+        float temp;
+        String bestGuess = "";
+        for (JsonElement element : tagArray) {
+            temp = element.getAsJsonObject().get("confidence").getAsFloat();
+            if (temp > confidence) {
+                confidence = temp;
+                bestGuess = element.getAsJsonObject().get("name").getAsString();
+            }
+        }
+        return bestGuess;
+    }
+
+    private String retrieveDescriptionFromJson(JsonObject response) {
         return null;
+    }
+
+    private ArrayList<String> retrieveTagsFromJson(JsonObject response) {
+        JsonArray tagArray = response.getAsJsonArray("tags");
+        ArrayList<String> tags = new ArrayList<>();
+        for (JsonElement element : tagArray)
+            tags.add(element.getAsJsonObject().get("name").getAsString());
+        return tags;
+    }
+
+    private ArrayList<String> retrieveOtherTagsFromJson(JsonObject response) {
+        JsonArray tagArray = response.getAsJsonObject("description").getAsJsonArray("tags");
+        ArrayList<String> tags = new ArrayList<>();
+        for (JsonElement element : tagArray)
+            tags.add(element.toString());
+        return tags;
     }
 
     @Override

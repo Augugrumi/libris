@@ -10,6 +10,10 @@ import java.util.ArrayList;
 //TODO write me mario
 public class AzureImageSearchResult implements IAzureImageSearchResult {
 
+    private String bestGuess;
+    private ArrayList<String> tags;
+    private ArrayList<String> otherTags;
+    private String description;
 
     private AzureImageSearchResult() {}
 
@@ -19,22 +23,38 @@ public class AzureImageSearchResult implements IAzureImageSearchResult {
     }
 
     @Override
-    public String dominantColor() {
-        return null;
+    public String getBestGuess() {
+        return bestGuess;
     }
 
     @Override
-    public ArrayList<Float> probabilities() {
-        return null;
+    public ArrayList<String> getTags() {
+        return tags;
+    }
+
+    @Override
+    public ArrayList<String> getOtherTags() {
+        return otherTags;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
     }
 
     // TODO write me mario
     public static class Builder {
 
         private String bestGuess;
+        private ArrayList<String> tags;
+        private ArrayList<String> otherTags;
+        private String description;
 
         public Builder () {
             bestGuess = "";
+            tags = new ArrayList<>();
+            otherTags = new ArrayList<>();
+            description = "";
         }
 
         public AzureImageSearchResult.Builder addBestGuess(String bestGuess) {
@@ -42,8 +62,22 @@ public class AzureImageSearchResult implements IAzureImageSearchResult {
             return this;
         }
 
-        public AzureImageSearchResult getSearchResult() {
+        public AzureImageSearchResult.Builder addTags(ArrayList<String> tags) {
+            this.tags = tags;
+            return this;
+        }
 
+        public AzureImageSearchResult.Builder addOtherTags(ArrayList<String> otherTags) {
+            this.otherTags = otherTags;
+            return this;
+        }
+
+        public AzureImageSearchResult.Builder addDescription(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public AzureImageSearchResult build() {
             return new AzureImageSearchResult();
         }
     }
