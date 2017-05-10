@@ -1,4 +1,4 @@
-package it.polpetta.libris.utils.SSL;
+package it.polpetta.libris.util.SSL;
 
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;

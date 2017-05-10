@@ -1,7 +1,7 @@
 package it.polpetta.libris.contract;
 
 
-import it.polpetta.libris.utils.Coordinates;
+import it.polpetta.libris.util.Coordinates;
 
 /**
  * Created by davide on 28/04/17.

@@ -8,7 +8,7 @@ import it.polpetta.libris.contract.IQueryBuilder;
 import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
 import it.polpetta.libris.image.azure.contract.IAzureImageSearcher;
 import it.polpetta.libris.image.contract.AbstractURLImageSearcher;
-import it.polpetta.libris.utils.Coordinates;
+import it.polpetta.libris.util.Coordinates;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;

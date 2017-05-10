@@ -1,7 +1,5 @@
 package it.polpetta.libris.contract;
 
-import it.polpetta.libris.utils.Coordinates;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

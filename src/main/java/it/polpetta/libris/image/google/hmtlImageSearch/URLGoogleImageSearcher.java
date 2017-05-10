@@ -7,7 +7,7 @@ import it.polpetta.libris.image.contract.AbstractURLImageSearcher;
 import it.polpetta.libris.image.contract.IImageQueryBuilder;
 import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
 import it.polpetta.libris.image.google.contract.IGoogleImageSearcher;
-import it.polpetta.libris.utils.Coordinates;
+import it.polpetta.libris.util.Coordinates;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
