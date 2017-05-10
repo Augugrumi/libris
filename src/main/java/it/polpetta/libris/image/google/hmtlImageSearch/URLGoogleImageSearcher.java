@@ -1,88 +1,73 @@
-package it.polpetta.libris.image.google.hmtlImageSearch.searchers;
+package it.polpetta.libris.image.google.hmtlImageSearch;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import it.polpetta.libris.utils.Coordinates;
-import it.polpetta.libris.image.google.contract.IGoogleImageSearcher;
-import it.polpetta.libris.utils.SearchResult.SearchResultBuilderAbstractFactory;
+import it.polpetta.libris.contract.IQueryBuilder;
+import it.polpetta.libris.contract.ISearchResult;
+import it.polpetta.libris.image.contract.AbstractURLImageSearcher;
+import it.polpetta.libris.image.contract.IImageQueryBuilder;
 import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
+import it.polpetta.libris.image.google.contract.IGoogleImageSearcher;
+import it.polpetta.libris.utils.Coordinates;
+import it.polpetta.libris.utils.SearchResult.SearchResultBuilderAbstractFactory;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
-
 /**
- * Created by davide on 28/04/17.
+ * Created by zanna on 08/05/17.
  */
-
-// FIXME REMOVE ME I'M NOT USEFUL ANYMORE, USR URLGOOGLEIMAGESEARCHER INSTEAD
-@Deprecated
-class URLSearcher implements IGoogleImageSearcher {
+public class URLGoogleImageSearcher extends AbstractURLImageSearcher {
 
     private static final String googleImageSearch = "https://www.google.com/searchbyimage?&image_url=";
     private static final String userAgentProperty = "User-Agent";
     private static final String userAgentValue =
             "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) " +
-            "Chrome/23.0.1271.97 Safari/537.11";
+                    "Chrome/23.0.1271.97 Safari/537.11";
 
-    private Coordinates location = null;
-    private URL link = null;
-
-
-    URLSearcher (URL pathToImage, Coordinates location) {
-        try {
-            this.link = new URL( googleImageSearch + pathToImage.toString());
-
-        } catch (MalformedURLException e) {
-
-            System.err.println("The URL provided it's not correct!");
-            e.printStackTrace();
-        }
-        this.location = location;
+    private URLGoogleImageSearcher(URL pathToImage, Coordinates location) {
+        super(AbstractURLImageSearcher.stringToURL(googleImageSearch + pathToImage.toString()),
+                location);
     }
 
-    public IGoogleImageSearchResult search() throws IOException {
-
-        URLConnection toDownload = link.openConnection();
-        toDownload.setRequestProperty(userAgentProperty, userAgentValue);
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(toDownload.getInputStream()));
-
-        String htmlPage= "";
-        boolean iterate = true;
-
-        while (iterate) {
-            String nextLine = in.readLine();
-
-            if (nextLine == null) {
-                iterate = false;
-            } else {
-                htmlPage += nextLine;
-            }
+    @Override
+    protected URLConnection setConnectionParameters() {
+        URLConnection toDownload = null;
+        try {
+            toDownload = link.openConnection();
+            toDownload.setRequestProperty(userAgentProperty, userAgentValue);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return toDownload;
+    }
 
-        Document parsedPage = Parser.parse(htmlPage, link.toString());
+    @Override
+    protected IGoogleImageSearchResult parseResult(String response) {
+        Document parsedPage = Parser.parse(response, link.toString());
 
-        Elements body = parsedPage.body().children();
+        final Elements body = parsedPage.body().children();
 
-        return SearchResultBuilderAbstractFactory
-                .makeGoogleImageSearchBuilder()
+        return new GoogleImageSearchResult.Builder()
                 .addBestGuess(retrieveBestGuessFromHTML(body))
                 .addLinks(retrieveLinksFromHTML(body))
                 .addDescriptions(retrieveDescriptionFromHTML(body))
                 .addTitles(retrieveTitleFromHTML(body))
                 .addSimilarImages(retrieveSimilarImageFromHTML(body))
                 .getSearchResult();
+    }
 
+    @Override
+    public IGoogleImageSearchResult search() throws IOException {
+        return (IGoogleImageSearchResult) super.search();
     }
 
     private String retrieveBestGuessFromHTML(Elements body) {
@@ -155,9 +140,63 @@ class URLSearcher implements IGoogleImageSearcher {
         return imageRes;
     }
 
-    private void printMalformedError (MalformedURLException e) {
+    public static class Builder implements IImageQueryBuilder {
 
-        System.err.println("An error occurred parsing the URL!");
-        e.printStackTrace();
+        private File photo = null;
+        private URL link = null;
+        private Coordinates location = null;
+
+
+        public IQueryBuilder setLocation(float x, float y) {
+
+            location = new Coordinates(x, y);
+
+            return this;
+        }
+
+        @Override
+        public IQueryBuilder setImage(File file) {
+            photo = file;
+            return this;
+        }
+
+        @Override
+        public IQueryBuilder setImage(URL linkToImage) {
+            link = linkToImage;
+            return this;
+        }
+
+        public IGoogleImageSearcher build() {
+
+        /*IGoogleImageSearcher searcher = null;
+        AbstractFactoryMethodSearcher factory;
+        IGoogleImageSearchResult res = null;
+
+        // FIXME
+        if (link != null) {
+            factory = new URLFactoryMethodSearcher(location, link);
+            // In order to use IGoogleImageSearcher we should downcast here!
+            searcher = factory.makeSearcher();
+        } else if (photo != null) {
+            // TODO
+        }
+        else {
+            return null; // No link or photo provided
+        }
+
+        try {
+            res = searcher.search();
+        } catch (IOException e) {
+
+            System.err.println("Error while searching the resources");
+            e.printStackTrace();
+        }
+
+        return res;*/
+
+            return null;
+        }
     }
+
+
 }

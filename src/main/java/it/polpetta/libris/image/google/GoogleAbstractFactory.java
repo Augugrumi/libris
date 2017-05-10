@@ -1,15 +1,14 @@
 package it.polpetta.libris.image.google;
 
-import it.polpetta.libris.contract.IAbstractFactoryReverseSearchProvider;
-import it.polpetta.libris.contract.IQueryBuilder;
-import it.polpetta.libris.image.google.hmtlImageSearch.GoogleImageSearchQueryBuilder;
+import it.polpetta.libris.image.google.contract.IAbstractGoogleImageFactoryReverseSearchProvider;
+import it.polpetta.libris.image.google.hmtlImageSearch.URLGoogleImageSearcher;
 
 /**
  * Created by davide on 29/04/17.
  */
-public class GoogleAbstractFactory implements IAbstractFactoryReverseSearchProvider {
+public class GoogleAbstractFactory implements IAbstractGoogleImageFactoryReverseSearchProvider {
 
-    public IQueryBuilder imageSearchBuildQuery() {
-        return new GoogleImageSearchQueryBuilder();
+    public URLGoogleImageSearcher.Builder imageSearchBuildQuery() {
+        return new URLGoogleImageSearcher.Builder();
     }
 }

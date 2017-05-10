@@ -1,4 +1,4 @@
-package it.polpetta.libris;
+package it.polpetta.libris.image;
 
 import it.polpetta.libris.image.azure.AzureAbstractFactory;
 import it.polpetta.libris.contract.IAbstractFactoryReverseSearchProvider;

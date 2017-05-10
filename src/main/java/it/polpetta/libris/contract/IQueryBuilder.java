@@ -10,5 +10,5 @@ public interface IQueryBuilder {
 
     IQueryBuilder setImage(File file);
     IQueryBuilder setImage(URL linkToImage);
-    ISearchResult runQuery();
+    ISearcher build();
 }

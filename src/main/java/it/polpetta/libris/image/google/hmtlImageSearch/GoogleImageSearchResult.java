@@ -1,4 +1,4 @@
-package it.polpetta.libris.utils.SearchResult.googleImageSearch;
+package it.polpetta.libris.image.google.hmtlImageSearch;
 
 import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
 
@@ -7,7 +7,8 @@ import java.util.ArrayList;
 /**
  * Created by davide on 06/05/17.
  */
-class GoogleImageSearchResult implements IGoogleImageSearchResult {
+
+public class GoogleImageSearchResult implements IGoogleImageSearchResult {
 
     private String bestGuess;
     private ArrayList<String> links;
@@ -15,7 +16,7 @@ class GoogleImageSearchResult implements IGoogleImageSearchResult {
     private ArrayList<String> titles;
     private ArrayList<String> similarImages;
 
-    GoogleImageSearchResult(
+    private GoogleImageSearchResult(
             String bestGuess,
             ArrayList<String> links,
             ArrayList<String> descriptions,
@@ -90,5 +91,58 @@ class GoogleImageSearchResult implements IGoogleImageSearchResult {
                 sb.append(",");
         }
         return sb.toString();
+    }
+
+    public static class Builder {
+
+        private String bestGuess;
+        private ArrayList<String> links;
+        private ArrayList<String> descriptions;
+        private ArrayList<String> titles;
+        private ArrayList<String> similarImages;
+
+        public Builder () {
+            bestGuess = "";
+            links = new ArrayList<>();
+            descriptions = new ArrayList<>();
+            titles = new ArrayList<>();
+            similarImages = new ArrayList<>();
+        }
+
+        public GoogleImageSearchResult.Builder addBestGuess(String bestGuess) {
+            this.bestGuess = bestGuess;
+            return this;
+        }
+
+        public GoogleImageSearchResult.Builder addLinks(ArrayList<String> links) {
+            this.links = links;
+            return this;
+        }
+
+        public GoogleImageSearchResult.Builder addDescriptions(ArrayList<String> descriptions) {
+            this.descriptions = descriptions;
+            return this;
+        }
+
+        public GoogleImageSearchResult.Builder addTitles(ArrayList<String> titles) {
+            this.titles = titles;
+            return this;
+        }
+
+        public GoogleImageSearchResult.Builder addSimilarImages(ArrayList<String> similarImages) {
+            this.similarImages = similarImages;
+            return this;
+        }
+
+        public IGoogleImageSearchResult getSearchResult() {
+
+            return new GoogleImageSearchResult(
+                    bestGuess,
+                    links,
+                    descriptions,
+                    titles,
+                    similarImages
+            );
+        }
     }
 }
