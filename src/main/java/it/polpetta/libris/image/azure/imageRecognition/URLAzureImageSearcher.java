@@ -5,12 +5,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import it.polpetta.libris.contract.IQueryBuilder;
-import it.polpetta.libris.contract.ISearcher;
 import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
 import it.polpetta.libris.image.azure.contract.IAzureImageSearcher;
 import it.polpetta.libris.image.contract.AbstractURLImageSearcher;
 import it.polpetta.libris.utils.Coordinates;
-import org.apache.http.util.Asserts;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
