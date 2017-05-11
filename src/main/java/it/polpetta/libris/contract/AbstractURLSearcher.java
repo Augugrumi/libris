@@ -25,6 +25,7 @@ public abstract class AbstractURLSearcher implements ISearcher {
         e.printStackTrace();
     }
 
+    //TODO write me better
     public static URL stringToURL(String url) {
         try {
             return new URL(url);

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 /**
  * Created by dpolonio on 10/05/17.
  */
-//TODO write me mario
 public class AzureImageSearchResult implements IAzureImageSearchResult {
 
     private String bestGuess;
@@ -27,14 +26,14 @@ public class AzureImageSearchResult implements IAzureImageSearchResult {
         this.description = description;
     }
 
+    // TODO evaluate the possibility to introduce constants instead of using explicitly strings
     @Override
     public String toJSONString() {
         StringBuilder builder = new StringBuilder();
         builder.append("{")
                 .append("\"best_guess\":\"")
                 .append(bestGuess)
-                .append("\"")
-                .append(",")
+                .append("\",")
                 .append("\"tags\":[")
                 .append(arrayListToString(tags))
                 .append("],")
@@ -79,7 +78,6 @@ public class AzureImageSearchResult implements IAzureImageSearchResult {
         return description;
     }
 
-    // TODO write me mario
     public static class Builder {
 
         private String bestGuess;

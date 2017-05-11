@@ -165,7 +165,7 @@ public class URLGoogleImageSearcher extends AbstractURLImageSearcher implements 
         }
 
         public IGoogleImageSearcher build() {
-
+        // TODO remove
         /*IGoogleImageSearcher searcher = null;
         AbstractFactoryMethodSearcher factory;
         IGoogleImageSearchResult res = null;
