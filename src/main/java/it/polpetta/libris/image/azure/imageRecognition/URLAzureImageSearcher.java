@@ -1,23 +1,27 @@
 package it.polpetta.libris.image.azure.imageRecognition;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import it.polpetta.libris.contract.IQueryBuilder;
-import it.polpetta.libris.contract.ISearcher;
 import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
 import it.polpetta.libris.image.azure.contract.IAzureImageSearcher;
 import it.polpetta.libris.image.contract.AbstractURLImageSearcher;
-import it.polpetta.libris.utils.Coordinates;
+import it.polpetta.libris.util.Coordinates;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 
 /**
  * Created by zanna on 09/05/17.
  */
 public class URLAzureImageSearcher extends AbstractURLImageSearcher implements IAzureImageSearcher {
     private static final String azureImageSearch =
-            "https://westus.api.cognitive.microsoft.com/vision/v1.0/describe";
+            "https://westus.api.cognitive.microsoft.com/vision/v1.0/analyze?visualFeatures=Description%2CTags";
     private static final String contentTypeAttribute = "Content-Type";
     private static final String contentTypeValue = "application/json";
     private static final String authenticationAttribute = "Ocp-Apim-Subscription-Key";
@@ -46,9 +50,10 @@ public class URLAzureImageSearcher extends AbstractURLImageSearcher implements I
                 urlConnection.setDoOutput(true);
                 urlConnection.setDoInput(true);
                 urlConnection.connect();
+                String json = "{\"url\":\"" + imagePath + "\"}";
                 OutputStream os = urlConnection.getOutputStream();
                 PrintWriter writer = new PrintWriter(new OutputStreamWriter(os, "UTF-8"), true);
-                writer.print(link);
+                writer.print(json);
                 writer.close();
                 os.close();
             }
@@ -58,10 +63,56 @@ public class URLAzureImageSearcher extends AbstractURLImageSearcher implements I
         return urlConnection;
     }
 
+
+
     @Override
     protected IAzureImageSearchResult parseResult(String response) {
-        // TODO
-        return null;
+        Gson gson = new Gson();
+        JsonObject jsonResponse = gson.fromJson(response, JsonObject.class);
+        return new AzureImageSearchResult.Builder()
+                .addBestGuess(retrieveBestGuessFromJson(jsonResponse))
+                .addDescription(retrieveDescriptionFromJson(jsonResponse))
+                .addTags(retrieveTagsFromJson(jsonResponse))
+                .addOtherTags(retrieveOtherTagsFromJson(jsonResponse))
+                .build();
+    }
+
+    private String retrieveBestGuessFromJson(JsonObject response) {
+        JsonArray tagArray = response.getAsJsonArray("tags");
+        float confidence = 0;
+        float temp;
+        String bestGuess = "";
+        for (JsonElement element : tagArray) {
+            temp = element.getAsJsonObject().get("confidence").getAsFloat();
+            if (temp > confidence) {
+                confidence = temp;
+                bestGuess = element.getAsJsonObject().get("name").getAsString();
+            }
+        }
+        return bestGuess;
+    }
+
+    private String retrieveDescriptionFromJson(JsonObject response) {
+        JsonElement element = response.getAsJsonObject("description").getAsJsonArray("captions").get(0);
+        String s = element.toString();
+        JsonObject obj = new Gson().fromJson(s, JsonObject.class);
+        return obj.get("text").getAsString();
+    }
+
+    private ArrayList<String> retrieveTagsFromJson(JsonObject response) {
+        JsonArray tagArray = response.getAsJsonArray("tags");
+        ArrayList<String> tags = new ArrayList<>();
+        for (JsonElement element : tagArray)
+            tags.add(element.getAsJsonObject().get("name").getAsString());
+        return tags;
+    }
+
+    private ArrayList<String> retrieveOtherTagsFromJson(JsonObject response) {
+        JsonArray tagArray = response.getAsJsonObject("description").getAsJsonArray("tags");
+        ArrayList<String> tags = new ArrayList<>();
+        for (JsonElement element : tagArray)
+            tags.add("" + element.getAsString());
+        return tags;
     }
 
     @Override

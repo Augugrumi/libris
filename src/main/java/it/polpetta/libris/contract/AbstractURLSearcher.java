@@ -1,7 +1,5 @@
 package it.polpetta.libris.contract;
 
-import it.polpetta.libris.utils.Coordinates;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -27,6 +25,7 @@ public abstract class AbstractURLSearcher implements ISearcher {
         e.printStackTrace();
     }
 
+    //TODO write me better
     public static URL stringToURL(String url) {
         try {
             return new URL(url);

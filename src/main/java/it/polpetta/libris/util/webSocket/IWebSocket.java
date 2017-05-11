@@ -1,4 +1,4 @@
-package it.polpetta.libris.utils.webSocket;
+package it.polpetta.libris.util.webSocket;
 
 import java.util.Observer;
 

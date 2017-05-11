@@ -1,4 +1,4 @@
-package it.polpetta.libris.utils.webSocket;
+package it.polpetta.libris.util.webSocket;
 
 import java.net.URI;
 import java.util.ArrayList;
