@@ -21,7 +21,7 @@ public class ReverseImageSearchTest extends TestCase {
     public void testAzureImageSearchReturnNotNull() {
         try {
             URL url = new URL("http://1.bp.blogspot.com/-EZ-EdfiRhUc/VU75RcSB8OI/AAAAAAAAC4E/7ouyZ9H-zco/s1600/patata.jpg");
-            String key = System.getProperty("AZURE_KEY");
+            String key = System.getenv("AZURE_KEY");
             IAzureImageSearchResult res = ReverseImageSearch
                     .getAzureServices(key)
                     .imageSearchBuildQuery()
