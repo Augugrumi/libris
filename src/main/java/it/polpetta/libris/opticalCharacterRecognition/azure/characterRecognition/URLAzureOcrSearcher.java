@@ -23,7 +23,7 @@ import java.net.URLConnection;
 /**
  * Created by dpolonio on 05/05/17.
  */
-class URLAzureOcrSearcher extends AbstractURLImageSearcher implements IAzureOcrResult{
+public class URLAzureOcrSearcher extends AbstractURLImageSearcher implements IAzureOcrResult{
     private static final String azureOCRSearch =
             "https://westus.api.cognitive.microsoft.com/vision/v1.0/ocr?language=unk&detectOrientation=true";
     private static final String contentTypeAttribute = "Content-Type";
