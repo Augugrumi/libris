@@ -11,6 +11,9 @@ import it.polpetta.libris.image.azure.contract.IAzureImageSearcher;
 import it.polpetta.libris.image.azure.imageRecognition.AzureImageSearchResult;
 import it.polpetta.libris.image.contract.AbstractURLImageSearcher;
 import it.polpetta.libris.opticalCharacterRecognition.azure.contract.IAzureOcrResult;
+import it.polpetta.libris.opticalCharacterRecognition.azure.contract.IAzureOcrSearcher;
+import it.polpetta.libris.opticalCharacterRecognition.contract.AbstractURLOcr;
+import it.polpetta.libris.opticalCharacterRecognition.contract.IOcrQueryBuilder;
 import it.polpetta.libris.util.Coordinates;
 
 import javax.naming.directory.SearchResult;
@@ -23,7 +26,7 @@ import java.net.URLConnection;
 /**
  * Created by dpolonio on 05/05/17.
  */
-public class URLAzureOcrSearcher extends AbstractURLImageSearcher implements IAzureOcrResult{
+public class URLAzureOcrSearcher extends AbstractURLOcr implements IAzureOcrSearcher{
     private static final String azureOCRSearch =
             "https://westus.api.cognitive.microsoft.com/vision/v1.0/ocr?language=unk&detectOrientation=true";
     private static final String contentTypeAttribute = "Content-Type";
@@ -33,7 +36,7 @@ public class URLAzureOcrSearcher extends AbstractURLImageSearcher implements IAz
     private URL imagePath;
 
     private URLAzureOcrSearcher(URL imagePath, Coordinates location) {
-        super(stringToURL(azureOCRSearch), location);
+        super(stringToURL(azureOCRSearch));
         this.imagePath = imagePath;
     }
 
@@ -70,48 +73,34 @@ public class URLAzureOcrSearcher extends AbstractURLImageSearcher implements IAz
 
 
     @Override
-    protected IAzureImageSearchResult parseResult(String response) {
+    protected IAzureOcrResult parseResult(String response) {
         Gson gson = new Gson();
         JsonObject jsonResponse = gson.fromJson(response, JsonObject.class);
         return null;
     }
 
     @Override
-    public IAzureImageSearchResult search()  throws IOException {
-            return (IAzureImageSearchResult) super.search();
-            }
-
-    @Override
-    public String getLanguage() {
-        return null;
+    public IAzureOcrResult search()  throws IOException {
+        return (IAzureOcrResult) super.search();
     }
 
-    @Override
-    public String getBestGuess() {
-        return null;
-    }
 
-    @Override
-    public String toJSONString() {
-        return null;
-    }
-
-    public static class Builder implements IQueryBuilder {
-
+    public static class Builder implements IOcrQueryBuilder {
 
         @Override
-        public IQueryBuilder setImage(File file) {
+        public Builder setImage(File file) {
             return null;
         }
 
         @Override
-        public IQueryBuilder setImage(URL linkToImage) {
+        public Builder setImage(URL linkToImage) {
             return null;
         }
 
         @Override
-        public ISearcher build() {
+        public IAzureOcrSearcher build() {
             return null;
         }
+
     }
 }

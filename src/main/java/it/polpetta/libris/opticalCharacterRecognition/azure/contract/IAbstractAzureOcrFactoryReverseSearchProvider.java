@@ -1,6 +1,7 @@
 package it.polpetta.libris.opticalCharacterRecognition.azure.contract;
 
 import it.polpetta.libris.contract.IQueryBuilder;
+import it.polpetta.libris.opticalCharacterRecognition.azure.characterRecognition.URLAzureOcrSearcher;
 import it.polpetta.libris.opticalCharacterRecognition.contract.IAbstractOcrFactoryReverseSearchProvider;
 
 /**
@@ -8,5 +9,5 @@ import it.polpetta.libris.opticalCharacterRecognition.contract.IAbstractOcrFacto
  */
 public interface IAbstractAzureOcrFactoryReverseSearchProvider extends IAbstractOcrFactoryReverseSearchProvider {
 
-    IQueryBuilder imageSearchBuildQuery();
+    URLAzureOcrSearcher.Builder imageSearchBuildQuery();
 }
