@@ -2,7 +2,6 @@ package it.polpetta.libris.image.google.hmtlImageSearch;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import it.polpetta.libris.contract.IQueryBuilder;
 import it.polpetta.libris.image.contract.AbstractURLImageSearcher;
 import it.polpetta.libris.image.contract.IImageQueryBuilder;
 import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
@@ -60,7 +59,7 @@ public class URLGoogleImageSearcher extends AbstractURLImageSearcher implements 
                 .addDescriptions(retrieveDescriptionFromHTML(body))
                 .addTitles(retrieveTitleFromHTML(body))
                 .addSimilarImages(retrieveSimilarImageFromHTML(body))
-                .getSearchResult();
+                .build();
     }
 
     @Override

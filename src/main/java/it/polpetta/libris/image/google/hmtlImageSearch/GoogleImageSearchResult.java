@@ -31,6 +31,7 @@ public class GoogleImageSearchResult implements IGoogleImageSearchResult {
         this.similarImages = similarImages;
     }
 
+    @Override
     public String toJSONString() {
         StringBuilder builder = new StringBuilder();
         builder.append("{")
@@ -53,10 +54,12 @@ public class GoogleImageSearchResult implements IGoogleImageSearchResult {
         return builder.toString();
     }
 
+    @Override
     public String getBestGuess() {
         return bestGuess;
     }
 
+    @Override
     public ArrayList<String> getTags() {
 
         ArrayList<String> res = new ArrayList<String>();
@@ -65,18 +68,22 @@ public class GoogleImageSearchResult implements IGoogleImageSearchResult {
         return res;
     }
 
+    @Override
     public ArrayList<String> getLinks() {
         return links;
     }
 
+    @Override
     public ArrayList<String> getDescription() {
         return descriptions;
     }
 
+    @Override
     public ArrayList<String> getTitles() {
         return titles;
     }
 
+    @Override
     public ArrayList<String> getSimilarImages() {
         return similarImages;
     }
@@ -134,7 +141,7 @@ public class GoogleImageSearchResult implements IGoogleImageSearchResult {
             return this;
         }
 
-        public IGoogleImageSearchResult getSearchResult() {
+        public IGoogleImageSearchResult build() {
 
             return new GoogleImageSearchResult(
                     bestGuess,

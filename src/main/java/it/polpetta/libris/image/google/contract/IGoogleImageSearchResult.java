@@ -12,4 +12,5 @@ public interface IGoogleImageSearchResult extends IImageSearchResult {
     ArrayList<String> getLinks();
     ArrayList<String> getDescription();
     ArrayList<String> getSimilarImages();
+    ArrayList<String> getTitles();
 }
