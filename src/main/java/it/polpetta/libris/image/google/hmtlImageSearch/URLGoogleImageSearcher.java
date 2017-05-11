@@ -145,7 +145,7 @@ public class URLGoogleImageSearcher extends AbstractURLImageSearcher implements 
         private Coordinates location = null;
 
 
-        public IQueryBuilder setLocation(float x, float y) {
+        public Builder setLocation(float x, float y) {
 
             location = new Coordinates(x, y);
 
@@ -153,13 +153,13 @@ public class URLGoogleImageSearcher extends AbstractURLImageSearcher implements 
         }
 
         @Override
-        public IQueryBuilder setImage(File file) {
+        public Builder setImage(File file) {
             photo = file;
             return this;
         }
 
         @Override
-        public IQueryBuilder setImage(URL linkToImage) {
+        public Builder setImage(URL linkToImage) {
             link = linkToImage;
             return this;
         }
