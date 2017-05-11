@@ -16,12 +16,14 @@ import it.polpetta.libris.opticalCharacterRecognition.contract.AbstractURLOcr;
 import it.polpetta.libris.opticalCharacterRecognition.contract.IOcrQueryBuilder;
 import it.polpetta.libris.util.Coordinates;
 
+import javax.lang.model.element.Element;
 import javax.naming.directory.SearchResult;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.PrivateKey;
 
 /**
  * Created by dpolonio on 05/05/17.
@@ -35,7 +37,7 @@ public class URLAzureOcrSearcher extends AbstractURLOcr implements IAzureOcrSear
     private static String subscriptionKey;
     private URL imagePath;
 
-    private URLAzureOcrSearcher(URL imagePath, Coordinates location) {
+    private URLAzureOcrSearcher(URL imagePath) {
         super(stringToURL(azureOCRSearch));
         this.imagePath = imagePath;
     }
@@ -71,12 +73,29 @@ public class URLAzureOcrSearcher extends AbstractURLOcr implements IAzureOcrSear
     }
 
 
-
+    // TODO implement me
     @Override
     protected IAzureOcrResult parseResult(String response) {
         Gson gson = new Gson();
         JsonObject jsonResponse = gson.fromJson(response, JsonObject.class);
-        return null;
+        String language = jsonResponse.get("language").getAsString();
+        StringBuilder phrase = new StringBuilder();
+        JsonArray regions = jsonResponse.get("regions").getAsJsonArray();
+        for (JsonElement region : regions){
+            JsonArray lines = region.getAsJsonObject().get("lines").getAsJsonArray();
+            for (JsonElement line : lines) {
+                JsonArray words = line.getAsJsonObject().get("words").getAsJsonArray();
+                for (JsonElement word : words) {
+                    String text = word.getAsJsonObject().get("text").getAsString();
+                    phrase.append(text);
+                    phrase.append(" ");
+                }
+            }
+        }
+        return new AzureOcrResult.Builder()
+                .addBestGuess(phrase.toString())
+                .addLanguage(language)
+                .build();
     }
 
     @Override
@@ -87,19 +106,26 @@ public class URLAzureOcrSearcher extends AbstractURLOcr implements IAzureOcrSear
 
     public static class Builder implements IOcrQueryBuilder {
 
+        private File file;
+        private URL url;
+
+        public Builder() {}
+
         @Override
         public Builder setImage(File file) {
-            return null;
+            this.file = file;
+            return this;
         }
 
         @Override
         public Builder setImage(URL linkToImage) {
-            return null;
+            this.url = linkToImage;
+            return this;
         }
 
         @Override
         public IAzureOcrSearcher build() {
-            return null;
+            return new URLAzureOcrSearcher(url);
         }
 
     }

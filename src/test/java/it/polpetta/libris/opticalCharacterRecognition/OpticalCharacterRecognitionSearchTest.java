@@ -1,17 +1,10 @@
 package it.polpetta.libris.opticalCharacterRecognition;
 
-import it.polpetta.libris.image.ReverseImageSearch;
-import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
-import it.polpetta.libris.image.azure.imageRecognition.URLAzureImageSearcher;
-import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
-import it.polpetta.libris.opticalCharacterRecognition.azure.contract.IAbstractAzureOcrFactoryReverseSearchProvider;
 import it.polpetta.libris.opticalCharacterRecognition.azure.contract.IAzureOcrResult;
 import junit.framework.TestCase;
 import org.junit.Assert;
 
 import java.net.URL;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by zanna on 11/05/17.
@@ -28,6 +21,7 @@ public class OpticalCharacterRecognitionSearchTest extends TestCase {
                     .setImage(url)
                     .build()
                     .search();
+            System.out.println(res.toJSONString());
             org.junit.Assert.assertNotNull(res);
         } catch (Exception e) {
             Assert.assertTrue(false);

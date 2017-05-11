@@ -39,7 +39,7 @@ public class AzureOcrResult implements IAzureOcrResult {
 
     @Override
     public String getLanguage() {
-        return null;
+        return language;
     }
 
 
