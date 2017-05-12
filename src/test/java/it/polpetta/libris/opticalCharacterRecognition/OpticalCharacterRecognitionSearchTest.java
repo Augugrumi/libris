@@ -21,7 +21,6 @@ public class OpticalCharacterRecognitionSearchTest extends TestCase {
                     .setImage(url)
                     .build()
                     .search();
-            System.out.println(res.toJSONString());
             org.junit.Assert.assertNotNull(res);
         } catch (Exception e) {
             Assert.assertTrue(false);
