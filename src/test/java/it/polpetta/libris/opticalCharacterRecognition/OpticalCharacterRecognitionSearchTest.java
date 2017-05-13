@@ -23,6 +23,8 @@ public class OpticalCharacterRecognitionSearchTest extends TestCase {
                     .search();
             org.junit.Assert.assertNotNull(res);
         } catch (Exception e) {
+
+            e.printStackTrace();
             Assert.assertTrue(false);
         }
     }

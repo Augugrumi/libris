@@ -24,6 +24,7 @@ import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.PrivateKey;
+import java.util.ArrayList;
 
 /**
  * Created by dpolonio on 05/05/17.
@@ -73,27 +74,36 @@ public class URLAzureOcrSearcher extends AbstractURLOcr implements IAzureOcrSear
     }
 
 
-    // TODO implement me
     @Override
     protected IAzureOcrResult parseResult(String response) {
+        ArrayList<String> res = new ArrayList<>();
         Gson gson = new Gson();
         JsonObject jsonResponse = gson.fromJson(response, JsonObject.class);
         String language = jsonResponse.get("language").getAsString();
-        StringBuilder phrase = new StringBuilder();
+
         JsonArray regions = jsonResponse.get("regions").getAsJsonArray();
+
         for (JsonElement region : regions){
             JsonArray lines = region.getAsJsonObject().get("lines").getAsJsonArray();
+            StringBuilder phrase = new StringBuilder();
+
             for (JsonElement line : lines) {
                 JsonArray words = line.getAsJsonObject().get("words").getAsJsonArray();
+
                 for (JsonElement word : words) {
                     String text = word.getAsJsonObject().get("text").getAsString();
                     phrase.append(text);
                     phrase.append(" ");
                 }
             }
+
+            phrase.deleteCharAt(phrase.length() - 1);
+            res.add(phrase.toString());
         }
+
+
         return new AzureOcrResult.Builder()
-                .addBestGuess(phrase.toString())
+                .addBestGuess(res)
                 .addLanguage(language)
                 .build();
     }

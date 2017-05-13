@@ -2,16 +2,18 @@ package it.polpetta.libris.opticalCharacterRecognition.azure.characterRecognitio
 
 import it.polpetta.libris.opticalCharacterRecognition.azure.contract.IAzureOcrResult;
 
+import java.util.ArrayList;
+
 /**
  * Created by dpolonio on 10/05/17.
  */
 public class AzureOcrResult implements IAzureOcrResult {
 
-    private String bestGuess;
+    private ArrayList<String> bestGuess;
     private String language;
 
     private AzureOcrResult(
-            String bestGuess,
+            ArrayList<String> bestGuess,
             String language
     ) {
         this.bestGuess = bestGuess;
@@ -33,7 +35,7 @@ public class AzureOcrResult implements IAzureOcrResult {
     }
 
     @Override
-    public String getBestGuess() {
+    public ArrayList<String> getBestGuess() {
         return bestGuess;
     }
 
@@ -46,11 +48,10 @@ public class AzureOcrResult implements IAzureOcrResult {
     public static class Builder {
 
         private String language;
-        private String bestGuess;
+        private ArrayList<String> bestGuess;
 
         public Builder () {
             language = "";
-            bestGuess = "";
         }
 
         public Builder addLanguage(String language) {
@@ -58,7 +59,7 @@ public class AzureOcrResult implements IAzureOcrResult {
             return this;
         }
 
-        public Builder addBestGuess(String bestGuess) {
+        public Builder addBestGuess(ArrayList<String> bestGuess) {
             this.bestGuess = bestGuess;
             return this;
         }
