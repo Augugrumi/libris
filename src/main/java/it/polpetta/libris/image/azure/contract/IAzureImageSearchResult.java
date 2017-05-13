@@ -1,6 +1,5 @@
 package it.polpetta.libris.image.azure.contract;
 
-import it.polpetta.libris.contract.ISearchResult;
 import it.polpetta.libris.image.contract.IImageSearchResult;
 
 import java.util.ArrayList;
