@@ -1,6 +1,7 @@
 package it.polpetta.libris.image.google.hmtlImageSearch;
 
 import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
+import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by zanna on 11/05/17.
  */
-public class GoogleImageSearchResultTest {
+public class GoogleImageSearchResultTest extends TestCase{
 
     private static final String bestGuess = "best_guess";
     private static final ArrayList<String> array = new ArrayList<>();

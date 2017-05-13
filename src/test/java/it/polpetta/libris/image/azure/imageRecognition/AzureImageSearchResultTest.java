@@ -3,6 +3,7 @@ package it.polpetta.libris.image.azure.imageRecognition;
 import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
 import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
 import it.polpetta.libris.image.google.hmtlImageSearch.GoogleImageSearchResult;
+import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,7 +14,7 @@ import static org.junit.Assert.*;
 /**
  * Created by zanna on 11/05/17.
  */
-public class AzureImageSearchResultTest {
+public class AzureImageSearchResultTest extends TestCase {
 
     private static final String bestGuess = "best_guess";
     private static final String description = "description";
