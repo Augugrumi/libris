@@ -10,8 +10,8 @@ Travis-CI is used to perform builds on every commit. The library is tested again
 
 | Branch | Build Status |
 | ------ | -------------|
-| Master | [![Build Status](https://travis-ci.com/Polpetta/libris.svg?token=ci1gnGXmpJTvBk4nzckq&branch=master)](https://travis-ci.com/Polpetta/libris) |
-| Dev    | [![Build Status](https://travis-ci.com/Polpetta/libris.svg?token=ci1gnGXmpJTvBk4nzckq&branch=dev)](https://travis-ci.com/Polpetta/libris)    |
+| Master | [![Build Status](https://travis-ci.org/Polpetta/libris.svg?branch=master)](https://travis-ci.org/Polpetta/libris) |
+| Dev    | [![Build Status](https://travis-ci.org/Polpetta/libris.svg?branch=dev)](https://travis-ci.org/Polpetta/libris)    |
 
 ## Compilation
 This project uses _Maven_ to build the project. In the project root in order to compile type:
