@@ -1,6 +1,7 @@
 package it.polpetta.libris.opticalCharacterRecognition.azure.characterRecognition;
 
 import it.polpetta.libris.opticalCharacterRecognition.azure.contract.IAzureOcrResult;
+import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by davide on 12/05/17.
  */
-public class AzureOcrResultTest {
+public class AzureOcrResultTest extends TestCase {
 
     //private static final String bestGuess = "something";
     private static final ArrayList<String> bestGuess = new ArrayList<>();
