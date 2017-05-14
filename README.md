@@ -31,6 +31,34 @@ To install the jar you need to give this command:
 ```
 mvn install
 ```
+## Setup
+
+Maven configuration:
+```xml
+<repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+</repository>
+
+<dependency>
+    <groupId>com.github.Polpetta</groupId>
+    <artifactId>libris</artifactId>
+    <version>v1.0.0</version>
+</dependency>
+```
+
+Gradle configuration:
+```groovy
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+}
+
+dependencies {
+    compile 'com.github.Polpetta:libris:v1.0.0'
+}
+```
 
 ## License
 
