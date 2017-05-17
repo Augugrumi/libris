@@ -9,5 +9,5 @@ import java.io.IOException;
  */
 public interface IIBMImageSearcher extends ISearcher {
 
-    IIBMSearchResult search() throws IOException;
+    IIBMImageSearchResult search() throws IOException;
 }

@@ -5,7 +5,7 @@ import it.polpetta.libris.contract.IAbstractFactoryReverseSearchProvider;
 import it.polpetta.libris.image.azure.contract.IAbstractAzureImageFactoryReverseSearchProvider;
 import it.polpetta.libris.image.google.GoogleAbstractFactory;
 import it.polpetta.libris.image.google.contract.IAbstractGoogleImageFactoryReverseSearchProvider;
-import it.polpetta.libris.image.ibm.IbmAbstractFactory;
+import it.polpetta.libris.image.ibm.IBMAbstractFactory;
 import it.polpetta.libris.image.ibm.contract.IAbstractIBMImageFactoryReverseSearchProvider;
 
 /**
@@ -26,6 +26,6 @@ public class ReverseImageSearch {
     }
 
     public static IAbstractIBMImageFactoryReverseSearchProvider getIBMServices(String subscriptionKey) {
-        return new IbmAbstractFactory(subscriptionKey);
+        return new IBMAbstractFactory(subscriptionKey);
     }
 }
