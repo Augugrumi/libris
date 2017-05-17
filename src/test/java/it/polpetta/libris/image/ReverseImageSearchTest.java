@@ -1,8 +1,5 @@
 package it.polpetta.libris.image;
 
-import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
-import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifyImagesOptions;
-import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassification;
 import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
 import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
 import it.polpetta.libris.image.ibm.contract.IIBMImageSearchResult;
