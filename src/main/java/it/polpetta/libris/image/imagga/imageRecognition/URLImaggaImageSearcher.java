@@ -18,14 +18,16 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
+import org.apache.commons.codec.binary.Base64;
+
 /**
  * Created by federico on 17/05/17.
  */
 public class URLImaggaImageSearcher  extends AbstractURLImageSearcher implements IImaggaImageSearcher{
 
     private static final String imaggaImageSearch =
-            "";
-    private static final String contentTypeAttribute = "Content-Type";
+            "https://api.imagga.com/v1/tagging";
+    private static final String contentTypeAttribute = "Accept";
     private static final String contentTypeValue = "application/json";
     private static final String authenticationAttribute = "";
     private static String subscriptionKey;
@@ -42,23 +44,19 @@ public class URLImaggaImageSearcher  extends AbstractURLImageSearcher implements
 
     @Override
     protected URLConnection setConnectionParameters() {
-        URL url = stringToURL(imaggaImageSearch);
+        URL url = stringToURL(imaggaImageSearch + "?" +
+            "url=" + imagePath);
         HttpsURLConnection urlConnection = null;
         try {
             if (url != null) {
-                urlConnection = (HttpsURLConnection) url.openConnection();
-                urlConnection.addRequestProperty(contentTypeAttribute, contentTypeValue);
+                System.out.println("url right formatted");
+                urlConnection = (HttpsURLConnection)url.openConnection();
                 // TODO throws exception if subscription key is null
-                urlConnection.addRequestProperty(authenticationAttribute, subscriptionKey);
-                urlConnection.setDoOutput(true);
-                urlConnection.setDoInput(true);
+                String basicAuth = "Basic " + new String(new Base64().encode(subscriptionKey.getBytes()));
+                System.out.println(basicAuth);
+                urlConnection.addRequestProperty ("Authorization", basicAuth);
+                urlConnection.addRequestProperty(contentTypeAttribute, contentTypeValue);
                 urlConnection.connect();
-                String json = "{\"url\":\"" + imagePath + "\"}";
-                OutputStream os = urlConnection.getOutputStream();
-                PrintWriter writer = new PrintWriter(new OutputStreamWriter(os, "UTF-8"), true);
-                writer.print(json);
-                writer.close();
-                os.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,11 +66,12 @@ public class URLImaggaImageSearcher  extends AbstractURLImageSearcher implements
 
     @Override
     protected ISearchResult parseResult(String response) {
+        System.out.println(response);
         Gson gson = new Gson();
         JsonObject jsonResponse = gson.fromJson(response, JsonObject.class);
+
         return new AzureImageSearchResult.Builder()
                 .addBestGuess(retrieveBestGuessFromJson(jsonResponse))
-                .addDescription(retrieveDescriptionFromJson(jsonResponse))
                 .addTags(retrieveTagsFromJson(jsonResponse))
                 .addOtherTags(retrieveOtherTagsFromJson(jsonResponse))
                 .build();
@@ -91,13 +90,6 @@ public class URLImaggaImageSearcher  extends AbstractURLImageSearcher implements
             }
         }
         return bestGuess;
-    }
-
-    private String retrieveDescriptionFromJson(JsonObject response) {
-        JsonElement element = response.getAsJsonObject("description").getAsJsonArray("captions").get(0);
-        String s = element.toString();
-        JsonObject obj = new Gson().fromJson(s, JsonObject.class);
-        return obj.get("text").getAsString();
     }
 
     private ArrayList<String> retrieveTagsFromJson(JsonObject response) {
