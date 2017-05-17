@@ -50,12 +50,14 @@ public class ReverseImageSearchTest extends TestCase {
             URL url = new URL("http://1.bp.blogspot.com/-EZ-EdfiRhUc/VU75RcSB8OI/AAAAAAAAC4E/7ouyZ9H-zco/s1600/patata.jpg");
             String key = System.getenv("IMAGGA_KEY") + ":" +
                     System.getenv("IMAGGA_SECRET");
+
             IImageSearchResult res = ReverseImageSearch
                     .getImaggaServices(key)
                     .imageSearchBuildQuery()
                     .setImage(url)
                     .build()
                     .search();
+            System.out.println(res.toJSONString());
             org.junit.Assert.assertNotNull(res);
         } catch (Exception e) {
             Assert.assertTrue(false);

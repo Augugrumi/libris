@@ -9,5 +9,4 @@ import java.util.ArrayList;
  */
 public interface IImaggaImageSearchResult extends IImageSearchResult {
     ArrayList<String> getOtherTags();
-    String getDescription();
 }

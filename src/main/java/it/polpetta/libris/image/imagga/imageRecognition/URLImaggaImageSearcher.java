@@ -23,15 +23,17 @@ import org.apache.commons.codec.binary.Base64;
 /**
  * Created by federico on 17/05/17.
  */
-public class URLImaggaImageSearcher  extends AbstractURLImageSearcher implements IImaggaImageSearcher{
+public class URLImaggaImageSearcher extends AbstractURLImageSearcher implements IImaggaImageSearcher{
 
     private static final String imaggaImageSearch =
             "https://api.imagga.com/v1/tagging";
     private static final String contentTypeAttribute = "Accept";
     private static final String contentTypeValue = "application/json";
-    private static final String authenticationAttribute = "";
+    private static final String authenticationAttribute = "Authorization";
+    private static final String authenticationType = "Basic ";
     private static String subscriptionKey;
     private URL imagePath;
+    private static final double limit = 35;
 
     public URLImaggaImageSearcher(URL link, Coordinates location) {
         super(link, location);
@@ -49,12 +51,11 @@ public class URLImaggaImageSearcher  extends AbstractURLImageSearcher implements
         HttpsURLConnection urlConnection = null;
         try {
             if (url != null) {
-                System.out.println("url right formatted");
                 urlConnection = (HttpsURLConnection)url.openConnection();
                 // TODO throws exception if subscription key is null
-                String basicAuth = "Basic " + new String(new Base64().encode(subscriptionKey.getBytes()));
-                System.out.println(basicAuth);
-                urlConnection.addRequestProperty ("Authorization", basicAuth);
+                String basicAuth = authenticationType +
+                        new String(new Base64().encode(subscriptionKey.getBytes()));
+                urlConnection.addRequestProperty (authenticationAttribute, basicAuth);
                 urlConnection.addRequestProperty(contentTypeAttribute, contentTypeValue);
                 urlConnection.connect();
             }
@@ -66,11 +67,10 @@ public class URLImaggaImageSearcher  extends AbstractURLImageSearcher implements
 
     @Override
     protected ISearchResult parseResult(String response) {
-        System.out.println(response);
         Gson gson = new Gson();
         JsonObject jsonResponse = gson.fromJson(response, JsonObject.class);
 
-        return new AzureImageSearchResult.Builder()
+        return new ImaggaImageSearchResult.Builder()
                 .addBestGuess(retrieveBestGuessFromJson(jsonResponse))
                 .addTags(retrieveTagsFromJson(jsonResponse))
                 .addOtherTags(retrieveOtherTagsFromJson(jsonResponse))
@@ -78,7 +78,11 @@ public class URLImaggaImageSearcher  extends AbstractURLImageSearcher implements
     }
 
     private String retrieveBestGuessFromJson(JsonObject response) {
-        JsonArray tagArray = response.getAsJsonArray("tags");
+        JsonArray tagArray = response
+                .getAsJsonArray("results")
+                .get(0)
+                .getAsJsonObject()
+                .getAsJsonArray("tags");
         float confidence = 0;
         float temp;
         String bestGuess = "";
@@ -86,25 +90,41 @@ public class URLImaggaImageSearcher  extends AbstractURLImageSearcher implements
             temp = element.getAsJsonObject().get("confidence").getAsFloat();
             if (temp > confidence) {
                 confidence = temp;
-                bestGuess = element.getAsJsonObject().get("name").getAsString();
+                bestGuess = element.getAsJsonObject().get("tag").getAsString();
             }
         }
         return bestGuess;
     }
 
     private ArrayList<String> retrieveTagsFromJson(JsonObject response) {
-        JsonArray tagArray = response.getAsJsonArray("tags");
+        JsonArray tagArray = response
+                .getAsJsonArray("results")
+                .get(0)
+                .getAsJsonObject()
+                .getAsJsonArray("tags");
         ArrayList<String> tags = new ArrayList<>();
-        for (JsonElement element : tagArray)
-            tags.add(element.getAsJsonObject().get("name").getAsString());
+        double confidence = 0;
+        for (JsonElement element : tagArray) {
+            confidence = element.getAsJsonObject().get("confidence").getAsDouble();
+            if (confidence >= limit)
+                tags.add(element.getAsJsonObject().get("tag").getAsString());
+        }
         return tags;
     }
 
     private ArrayList<String> retrieveOtherTagsFromJson(JsonObject response) {
-        JsonArray tagArray = response.getAsJsonObject("description").getAsJsonArray("tags");
+        JsonArray tagArray = response
+                .getAsJsonArray("results")
+                .get(0)
+                .getAsJsonObject()
+                .getAsJsonArray("tags");
         ArrayList<String> tags = new ArrayList<>();
-        for (JsonElement element : tagArray)
-            tags.add("" + element.getAsString());
+        double confidence = 0;
+        for (JsonElement element : tagArray) {
+            confidence = element.getAsJsonObject().get("confidence").getAsDouble();
+            if (confidence < limit)
+                tags.add(element.getAsJsonObject().get("tag").getAsString());
+        }
         return tags;
     }
 
