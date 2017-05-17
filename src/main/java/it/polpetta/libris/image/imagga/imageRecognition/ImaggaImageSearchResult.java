@@ -13,18 +13,15 @@ public class ImaggaImageSearchResult implements IImaggaImageSearchResult {
     private String bestGuess;
     private ArrayList<String> tags;
     private ArrayList<String> otherTags;
-    private String description;
 
     private ImaggaImageSearchResult(
             String bestGuess,
             ArrayList<String> tags,
-            ArrayList<String> otherTags,
-            String description
+            ArrayList<String> otherTags
     ) {
         this.bestGuess = bestGuess;
         this.tags = tags;
         this.otherTags = otherTags;
-        this.description = description;
     }
 
     // TODO evaluate the possibility to introduce constants instead of using explicitly strings
@@ -41,8 +38,6 @@ public class ImaggaImageSearchResult implements IImaggaImageSearchResult {
                 .append("\"other_tags\":[")
                 .append(arrayListToString(otherTags))
                 .append("],")
-                .append("\"description\":\"")
-                .append(description)
                 .append("\"}");
         return builder.toString();
     }
@@ -74,23 +69,16 @@ public class ImaggaImageSearchResult implements IImaggaImageSearchResult {
         return otherTags;
     }
 
-    @Override
-    public String getDescription() {
-        return description;
-    }
-
     public static class Builder {
 
         private String bestGuess;
         private ArrayList<String> tags;
         private ArrayList<String> otherTags;
-        private String description;
 
         public Builder () {
             this.bestGuess = "";
             this.tags = new ArrayList<>();
             this.otherTags = new ArrayList<>();
-            this.description = "";
         }
 
         public ImaggaImageSearchResult.Builder addBestGuess(String bestGuess) {
@@ -108,17 +96,11 @@ public class ImaggaImageSearchResult implements IImaggaImageSearchResult {
             return this;
         }
 
-        public ImaggaImageSearchResult.Builder addDescription(String description) {
-            this.description = description;
-            return this;
-        }
-
         public ImaggaImageSearchResult build() {
             return new ImaggaImageSearchResult(
                     bestGuess,
                     tags,
-                    otherTags,
-                    description
+                    otherTags
             );
         }
     }

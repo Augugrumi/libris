@@ -24,12 +24,13 @@ import java.util.ArrayList;
 public class URLImaggaImageSearcher  extends AbstractURLImageSearcher implements IImaggaImageSearcher{
 
     private static final String imaggaImageSearch =
-            "";
-    private static final String contentTypeAttribute = "Content-Type";
+            "https://api.imagga.com/v1/tagging";
+    private static final String contentTypeAttribute = "Accept";
     private static final String contentTypeValue = "application/json";
     private static final String authenticationAttribute = "";
     private static String subscriptionKey;
     private URL imagePath;
+    private static final double limit = 35;
 
     public URLImaggaImageSearcher(URL link, Coordinates location) {
         super(link, location);
@@ -72,7 +73,6 @@ public class URLImaggaImageSearcher  extends AbstractURLImageSearcher implements
         JsonObject jsonResponse = gson.fromJson(response, JsonObject.class);
         return new AzureImageSearchResult.Builder()
                 .addBestGuess(retrieveBestGuessFromJson(jsonResponse))
-                .addDescription(retrieveDescriptionFromJson(jsonResponse))
                 .addTags(retrieveTagsFromJson(jsonResponse))
                 .addOtherTags(retrieveOtherTagsFromJson(jsonResponse))
                 .build();
@@ -87,32 +87,33 @@ public class URLImaggaImageSearcher  extends AbstractURLImageSearcher implements
             temp = element.getAsJsonObject().get("confidence").getAsFloat();
             if (temp > confidence) {
                 confidence = temp;
-                bestGuess = element.getAsJsonObject().get("name").getAsString();
+                bestGuess = element.getAsJsonObject().get("tag").getAsString();
             }
         }
         return bestGuess;
     }
 
-    private String retrieveDescriptionFromJson(JsonObject response) {
-        JsonElement element = response.getAsJsonObject("description").getAsJsonArray("captions").get(0);
-        String s = element.toString();
-        JsonObject obj = new Gson().fromJson(s, JsonObject.class);
-        return obj.get("text").getAsString();
-    }
-
     private ArrayList<String> retrieveTagsFromJson(JsonObject response) {
         JsonArray tagArray = response.getAsJsonArray("tags");
         ArrayList<String> tags = new ArrayList<>();
-        for (JsonElement element : tagArray)
-            tags.add(element.getAsJsonObject().get("name").getAsString());
+        double confidence = 0;
+        for (JsonElement element : tagArray) {
+            confidence = element.getAsJsonObject().get("confidence").getAsDouble();
+            if (confidence >= limit)
+                tags.add(element.getAsJsonObject().get("tag").getAsString());
+        }
         return tags;
     }
 
     private ArrayList<String> retrieveOtherTagsFromJson(JsonObject response) {
-        JsonArray tagArray = response.getAsJsonObject("description").getAsJsonArray("tags");
+        JsonArray tagArray = response.getAsJsonArray("tags");
         ArrayList<String> tags = new ArrayList<>();
-        for (JsonElement element : tagArray)
-            tags.add("" + element.getAsString());
+        double confidence = 0;
+        for (JsonElement element : tagArray) {
+            confidence = element.getAsJsonObject().get("confidence").getAsDouble();
+            if (confidence < limit)
+                tags.add(element.getAsJsonObject().get("tag").getAsString());
+        }
         return tags;
     }
 

@@ -2,7 +2,9 @@ package it.polpetta.libris.image;
 
 import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
 import it.polpetta.libris.image.azure.imageRecognition.AzureImageSearchResult;
+import it.polpetta.libris.image.contract.IImageSearchResult;
 import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
+import it.polpetta.libris.image.imagga.contract.IImaggaImageSearchResult;
 import junit.framework.*;
 import org.junit.*;
 import org.junit.Assert;
@@ -39,6 +41,22 @@ public class ReverseImageSearchTest extends TestCase {
             URL url = new URL("http://1.bp.blogspot.com/-EZ-EdfiRhUc/VU75RcSB8OI/AAAAAAAAC4E/7ouyZ9H-zco/s1600/patata.jpg");
             IGoogleImageSearchResult res = ReverseImageSearch
                     .getGoogleServices()
+                    .imageSearchBuildQuery()
+                    .setImage(url)
+                    .build()
+                    .search();
+            org.junit.Assert.assertNotNull(res);
+        } catch (Exception e) {
+            Assert.assertTrue(false);
+        }
+    }
+
+    public void testImaggaImageSearchReturnNotNull() {
+        try {
+            URL url = new URL("http://1.bp.blogspot.com/-EZ-EdfiRhUc/VU75RcSB8OI/AAAAAAAAC4E/7ouyZ9H-zco/s1600/patata.jpg");
+            String key = System.getenv("IMAGGA_KEY") + ":" + System.getenv("IMAGGA_SECRET");
+            IImaggaImageSearchResult res = ReverseImageSearch
+                    .getImaggaServices(key)
                     .imageSearchBuildQuery()
                     .setImage(url)
                     .build()
