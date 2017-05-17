@@ -21,7 +21,7 @@ import java.util.ArrayList;
 /**
  * Created by federico on 17/05/17.
  */
-public class URLImaggaImageSearcher  extends AbstractURLImageSearcher implements IImaggaImageSearcher{
+public class URLImaggaImageSearcher extends AbstractURLImageSearcher implements IImaggaImageSearcher{
 
     private static final String imaggaImageSearch =
             "https://api.imagga.com/v1/tagging";
