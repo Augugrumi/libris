@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by davide on 12/05/17.
  */
-public class AzureOcrResultTest extends TestCase {
+public class IBMOcrResultTest extends TestCase {
 
     //private static final String bestGuess = "something";
     private static final ArrayList<String> bestGuess = new ArrayList<>();
