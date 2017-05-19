@@ -5,6 +5,7 @@ import it.polpetta.libris.image.contract.IImageSearchResult;
 import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
 import junit.framework.*;
 import org.junit.Assert;
+import org.junit.Ignore;
 
 import java.net.URL;
 
@@ -30,6 +31,7 @@ public class ReverseImageSearchTest extends TestCase {
         }
     }
 
+    @Ignore
     public void testGoogleImageSearchReturnNotNull() {
         try {
             URL url = new URL("http://1.bp.blogspot.com/-EZ-EdfiRhUc/VU75RcSB8OI/AAAAAAAAC4E/7ouyZ9H-zco/s1600/patata.jpg");
