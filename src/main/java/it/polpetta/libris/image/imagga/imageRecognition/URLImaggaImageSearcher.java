@@ -32,12 +32,12 @@ public class URLImaggaImageSearcher extends AbstractURLImageSearcher implements 
     private static final String authenticationAttribute = "Authorization";
     private static final String authenticationType = "Basic ";
     private static String subscriptionKey;
-    private URL imagePath;
+    private URL link;
     private static final double limit = 35;
 
-    public URLImaggaImageSearcher(URL link, Coordinates location) {
+    private URLImaggaImageSearcher(URL link, Coordinates location) {
         super(link, location);
-        this.imagePath = link;
+        this.link = link;
     }
 
     public static void setSubscriptionKey(String key) {
@@ -47,7 +47,7 @@ public class URLImaggaImageSearcher extends AbstractURLImageSearcher implements 
     @Override
     protected URLConnection setConnectionParameters() {
         URL url = stringToURL(imaggaImageSearch + "?" +
-            "url=" + imagePath);
+            "url=" + link);
         HttpsURLConnection urlConnection = null;
         try {
             if (url != null) {
