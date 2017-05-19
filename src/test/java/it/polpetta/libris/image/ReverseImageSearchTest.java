@@ -1,9 +1,10 @@
 package it.polpetta.libris.image;
 
 import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
-import it.polpetta.libris.image.contract.IImageSearchResult;
 import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
-import junit.framework.*;
+import it.polpetta.libris.image.ibm.contract.IIBMImageSearchResult;
+import junit.framework.TestCase;
+import it.polpetta.libris.image.contract.IImageSearchResult;
 import org.junit.Assert;
 import org.junit.Ignore;
 
@@ -25,7 +26,7 @@ public class ReverseImageSearchTest extends TestCase {
                     .setImage(url)
                     .build()
                     .search();
-            org.junit.Assert.assertNotNull(res);
+            Assert.assertNotNull(res);
         } catch (Exception e) {
             Assert.assertTrue(false);
         }
@@ -41,7 +42,25 @@ public class ReverseImageSearchTest extends TestCase {
                     .setImage(url)
                     .build()
                     .search();
-            org.junit.Assert.assertNotNull(res);
+            Assert.assertNotNull(res);
+        } catch (Exception e) {
+            Assert.assertTrue(false);
+        }
+    }
+
+    public void testIBMImageSearchReturnNotNull() {
+
+        try {
+            URL url = new URL("http://1.bp.blogspot.com/-EZ-EdfiRhUc/VU75RcSB8OI/AAAAAAAAC4E/7ouyZ9H-zco/s1600/patata.jpg");
+            String key = System.getenv("WATSON_KEY");
+            IIBMImageSearchResult res = ReverseImageSearch
+                    .getIBMServices(key)
+                    .imageSearchBuildQuery()
+                    .setImage(url)
+                    .build()
+                    .search();
+            System.out.println(res.toJSONString());
+            Assert.assertNotNull(res);
         } catch (Exception e) {
             Assert.assertTrue(false);
         }
