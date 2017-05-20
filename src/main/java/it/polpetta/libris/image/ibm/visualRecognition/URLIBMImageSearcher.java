@@ -69,7 +69,7 @@ public class URLIBMImageSearcher extends AbstractURLSearcher implements IIBMImag
     @Override
     public IIBMImageSearchResult search() throws IOException {
         VisualRecognition service =
-                new VisualRecognition("2017-05-20", subscriptionKey);
+                new VisualRecognition("2017-05-18T19:50Z", subscriptionKey);
 
         ClassifyImagesOptions options1 = new ClassifyImagesOptions.Builder()
                 .url(link.toString())
