@@ -33,6 +33,10 @@
             <id>clojars.org</id>
             <url>http://clojars.org/repo</url>
         </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
 
     <build>
@@ -98,10 +102,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.ibm.watson.developer_cloud</groupId>
+            <groupId>com.github.Augugrumi</groupId>
             <artifactId>java-sdk</artifactId>
-            <version>3.8.0</version>
-
+            <version>3.8.1</version>
         </dependency>
 
         <dependency>
