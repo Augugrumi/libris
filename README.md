@@ -58,7 +58,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.Polpetta:libris:v1.0.0'
+    compile 'com.github.Augugrumi:libris:v1.0.0'
 }
 ```
 
