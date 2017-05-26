@@ -1,7 +1,9 @@
 package it.polpetta.libris.opticalCharacterRecognition;
 
+import it.polpetta.libris.contract.ISearchResult;
 import it.polpetta.libris.opticalCharacterRecognition.azure.contract.IAzureOcrResult;
 import it.polpetta.libris.opticalCharacterRecognition.ibm.contract.IIBMOcrResult;
+import it.polpetta.libris.opticalCharacterRecognition.ocrSpace.contract.IOCRSpaceSearchResult;
 import junit.framework.TestCase;
 import org.junit.Assert;
 
@@ -41,6 +43,25 @@ public class OpticalCharacterRecognitionSearchTest extends TestCase {
                     .search();
             System.out.println(res.toJSONString());
             org.junit.Assert.assertNotNull(res);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.assertTrue(false);
+        }
+    }
+
+    public void testFreeOCRSearchReturnNotNull() {
+        try {
+            URL url = new URL("https://onepagelove-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/opl-small-1.jpg");
+            String key = System.getenv("OCR_SPACE");
+            IOCRSpaceSearchResult res = OpticalCharacterRecognitionSearch
+                    .getOCRSpaceServices(key)
+                    .imageSearchBuildQuery()
+                    .setImage(url)
+                    .build()
+                    .search();
+            System.out.println(res.toJSONString());
+            org.junit.Assert.assertNotNull(res);
+
         } catch (Exception e) {
             e.printStackTrace();
             Assert.assertTrue(false);
