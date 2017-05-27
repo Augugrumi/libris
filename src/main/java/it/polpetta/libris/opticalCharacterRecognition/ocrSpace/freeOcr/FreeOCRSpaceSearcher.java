@@ -62,7 +62,7 @@ public class FreeOCRSpaceSearcher extends AbstractURLOcr implements IOCRSpaceSea
         json.addProperty("apikey", subscriptionKey);
         json.addProperty("isOverlayRequired", false);
         json.addProperty("url", link.toString());
-        json.addProperty("language", "fre");
+        //json.addProperty("language", "fre");
 
         System.out.println("JSON" + connection.toString());
 
