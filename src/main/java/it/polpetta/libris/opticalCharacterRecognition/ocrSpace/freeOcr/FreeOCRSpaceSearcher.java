@@ -36,12 +36,12 @@ public class FreeOCRSpaceSearcher extends AbstractURLOcr implements IOCRSpaceSea
     @Override
     protected URLConnection setConnectionParameters() {
 
-        HttpsURLConnection connection = null;
+        URLConnection connection = null;
 
         try {
-            connection = (HttpsURLConnection) new URL(OcrSpaceUrl).openConnection();
+            connection = new URL(OcrSpaceUrl).openConnection();
             //add request header
-            connection.setRequestMethod("POST");
+            //connection.setRequestMethod("POST");
             connection.setRequestProperty("User-Agent", "Mozilla/5.0");
             connection.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
@@ -55,7 +55,7 @@ public class FreeOCRSpaceSearcher extends AbstractURLOcr implements IOCRSpaceSea
     @Override
     protected String retrieveData (URLConnection urlConnection) {
 
-        HttpsURLConnection connection = (HttpsURLConnection) urlConnection;
+        //HttpsURLConnection connection = (HttpsURLConnection) urlConnection;
 
         JsonObject json = new JsonObject();
 
@@ -64,18 +64,18 @@ public class FreeOCRSpaceSearcher extends AbstractURLOcr implements IOCRSpaceSea
         json.addProperty("url", link.toString());
         //json.addProperty("language", "fre");
 
-        System.out.println("JSON" + connection.toString());
+        System.out.println("JSON" + urlConnection.toString());
 
-        connection.setDoOutput(true);
+        urlConnection.setDoOutput(true);
 
         try {
-            System.out.println(connection.toString());
-            DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+            System.out.println(urlConnection.toString());
+            DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
             wr.writeBytes(getPostDataString(json));
             wr.flush();
             wr.close();
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             String inputLine;
             StringBuffer response = new StringBuffer();
 
