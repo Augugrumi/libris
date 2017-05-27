@@ -2,9 +2,7 @@ package it.polpetta.libris.opticalCharacterRecognition.ocrSpace.freeOcr;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import it.polpetta.libris.contract.IQueryBuilder;
 import it.polpetta.libris.contract.ISearchResult;
-import it.polpetta.libris.contract.ISearcher;
 import it.polpetta.libris.opticalCharacterRecognition.contract.AbstractURLOcr;
 import it.polpetta.libris.opticalCharacterRecognition.contract.IOcrQueryBuilder;
 import it.polpetta.libris.opticalCharacterRecognition.ocrSpace.contract.IOCRSpaceSearcher;
@@ -24,7 +22,7 @@ import java.util.Map;
 public class FreeOCRSpaceSearcher extends AbstractURLOcr implements IOCRSpaceSearcher {
 
     private static String subscriptionKey = null;
-    private static String OcrSpaceUrl = "https://api.ocr.space/parse/image";
+    private static final String OcrSpaceUrl = "https://api.ocr.space/parse/image";
 
 
     private FreeOCRSpaceSearcher (URL link) {
@@ -41,12 +39,11 @@ public class FreeOCRSpaceSearcher extends AbstractURLOcr implements IOCRSpaceSea
         HttpsURLConnection connection = null;
 
         try {
-            connection = (HttpsURLConnection) link.openConnection();
+            connection = (HttpsURLConnection) new URL(OcrSpaceUrl).openConnection();
             //add request header
             connection.setRequestMethod("POST");
             connection.setRequestProperty("User-Agent", "Mozilla/5.0");
             connection.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
-            connection.setDoOutput(true);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,9 +62,14 @@ public class FreeOCRSpaceSearcher extends AbstractURLOcr implements IOCRSpaceSea
         json.addProperty("apikey", subscriptionKey);
         json.addProperty("isOverlayRequired", false);
         json.addProperty("url", link.toString());
-        json.addProperty("language", "en");
+        json.addProperty("language", "fre");
+
+        System.out.println("JSON" + connection.toString());
+
+        connection.setDoOutput(true);
 
         try {
+            System.out.println(connection.toString());
             DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
             wr.writeBytes(getPostDataString(json));
             wr.flush();
@@ -128,7 +130,7 @@ public class FreeOCRSpaceSearcher extends AbstractURLOcr implements IOCRSpaceSea
     @Override
     protected ISearchResult parseResult(String response) {
 
-        System.out.println(response);
+        System.out.println("response:" + response);
 
         return null;
     }
