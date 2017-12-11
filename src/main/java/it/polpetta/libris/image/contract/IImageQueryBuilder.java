@@ -1,6 +1,6 @@
-package it.polpetta.libris.image.contract;
+package com.tfederico.libris.image.contract;
 
-import it.polpetta.libris.contract.IQueryBuilder;
+import com.tfederico.libris.contract.IQueryBuilder;
 
 /**
  * Created by zanna on 08/05/17.

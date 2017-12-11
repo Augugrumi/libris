@@ -1,4 +1,4 @@
-package it.polpetta.libris.util;
+package com.tfederico.libris.util;
 
 /**
  * Created by davide on 28/04/17.

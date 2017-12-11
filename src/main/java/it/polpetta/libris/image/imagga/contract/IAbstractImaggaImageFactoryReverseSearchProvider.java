@@ -1,7 +1,7 @@
-package it.polpetta.libris.image.imagga.contract;
+package com.tfederico.libris.image.imagga.contract;
 
-import it.polpetta.libris.image.contract.IAbstractImageFactoryReverseSearchProvider;
-import it.polpetta.libris.image.imagga.imageRecognition.URLImaggaImageSearcher;
+import com.tfederico.libris.image.contract.IAbstractImageFactoryReverseSearchProvider;
+import com.tfederico.libris.image.imagga.imageRecognition.URLImaggaImageSearcher;
 
 /**
  * Created by federico on 17/05/17.

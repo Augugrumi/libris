@@ -1,7 +1,6 @@
-package it.polpetta.libris.opticalCharacterRecognition.azure.contract;
+package com.tfederico.libris.opticalCharacterRecognition.azure.contract;
 
-import it.polpetta.libris.contract.ISearcher;
-import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
+import com.tfederico.libris.contract.ISearcher;
 
 import java.io.IOException;
 

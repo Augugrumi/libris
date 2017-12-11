@@ -1,6 +1,6 @@
-package it.polpetta.libris.image.azure.imageRecognition;
+package com.tfederico.libris.image.azure.imageRecognition;
 
-import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
+import com.tfederico.libris.image.azure.contract.IAzureImageSearchResult;
 
 import java.util.ArrayList;
 

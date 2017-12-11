@@ -1,6 +1,4 @@
-package it.polpetta.libris.contract;
-
-import it.polpetta.libris.contract.ISearchResult;
+package com.tfederico.libris.contract;
 
 import java.io.IOException;
 

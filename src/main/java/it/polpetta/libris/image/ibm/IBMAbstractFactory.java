@@ -1,8 +1,8 @@
-package it.polpetta.libris.image.ibm;
+package com.tfederico.libris.image.ibm;
 
 
-import it.polpetta.libris.image.ibm.contract.IAbstractIBMImageFactoryReverseSearchProvider;
-import it.polpetta.libris.image.ibm.visualRecognition.URLIBMImageSearcher;
+import com.tfederico.libris.image.ibm.contract.IAbstractIBMImageFactoryReverseSearchProvider;
+import com.tfederico.libris.image.ibm.visualRecognition.URLIBMImageSearcher;
 
 /**
  * Created by dpolonio on 17/05/17.

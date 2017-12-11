@@ -1,6 +1,6 @@
-package it.polpetta.libris.opticalCharacterRecognition.ibm.characterRecognition;
+package com.tfederico.libris.opticalCharacterRecognition.ibm.characterRecognition;
 
-import it.polpetta.libris.opticalCharacterRecognition.ibm.contract.IIBMOcrResult;
+import com.tfederico.libris.opticalCharacterRecognition.ibm.contract.IIBMOcrResult;
 
 import java.util.ArrayList;
 

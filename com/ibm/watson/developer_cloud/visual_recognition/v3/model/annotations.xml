@@ -1,0 +1,5 @@
+<root>
+    <item name='com.ibm.watson.developer_cloud.visual_recognition.v3.model.Classifier java.lang.String getClassifierId()'>
+        <annotation name='org.jetbrains.annotations.NotNull'/>
+    </item>
+</root>

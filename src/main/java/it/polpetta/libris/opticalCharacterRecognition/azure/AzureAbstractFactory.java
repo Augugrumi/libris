@@ -1,7 +1,7 @@
-package it.polpetta.libris.opticalCharacterRecognition.azure;
+package com.tfederico.libris.opticalCharacterRecognition.azure;
 
-import it.polpetta.libris.opticalCharacterRecognition.azure.characterRecognition.URLAzureOcrSearcher;
-import it.polpetta.libris.opticalCharacterRecognition.azure.contract.IAbstractAzureOcrFactoryReverseSearchProvider;
+import com.tfederico.libris.opticalCharacterRecognition.azure.characterRecognition.URLAzureOcrSearcher;
+import com.tfederico.libris.opticalCharacterRecognition.azure.contract.IAbstractAzureOcrFactoryReverseSearchProvider;
 
 /**
  * Created by zanna on 11/05/17.

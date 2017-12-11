@@ -1,4 +1,4 @@
-package it.polpetta.libris.contract;
+package com.tfederico.libris.contract;
 
 import java.io.BufferedReader;
 import java.io.IOException;

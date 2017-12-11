@@ -1,6 +1,6 @@
-package it.polpetta.libris.image.imagga.contract;
+package com.tfederico.libris.image.imagga.contract;
 
-import it.polpetta.libris.contract.ISearcher;
+import com.tfederico.libris.contract.ISearcher;
 
 import java.io.IOException;
 

@@ -1,6 +1,6 @@
-package it.polpetta.libris.opticalCharacterRecognition.contract;
+package com.tfederico.libris.opticalCharacterRecognition.contract;
 
-import it.polpetta.libris.contract.ISearchResult;
+import com.tfederico.libris.contract.ISearchResult;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,7 @@
-package it.polpetta.libris.image.contract;
+package com.tfederico.libris.image.contract;
 
-import it.polpetta.libris.contract.AbstractURLSearcher;
-import it.polpetta.libris.util.Coordinates;
+import com.tfederico.libris.contract.AbstractURLSearcher;
+import com.tfederico.libris.util.Coordinates;
 
 import java.net.URL;
 

@@ -1,6 +1,6 @@
-package it.polpetta.libris.image.google.hmtlImageSearch;
+package com.tfederico.libris.image.google.hmtlImageSearch;
 
-import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
+import com.tfederico.libris.image.google.contract.IGoogleImageSearchResult;
 
 import java.util.ArrayList;
 

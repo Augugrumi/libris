@@ -1,7 +1,6 @@
-package it.polpetta.libris.image.google.contract;
+package com.tfederico.libris.image.google.contract;
 
-import it.polpetta.libris.contract.ISearcher;
-import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
+import com.tfederico.libris.contract.ISearcher;
 
 import java.io.IOException;
 
