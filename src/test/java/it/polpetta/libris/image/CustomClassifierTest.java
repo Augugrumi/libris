@@ -29,11 +29,14 @@ public class CustomClassifierTest {
         try {
             vc = customClassifierUtility.createClassifier("pearl", positiveSamples, negativeSamples);
         } catch (FileNotFoundException e) {
-            assert false;
+
+            org.junit.Assert.assertTrue(false);
         }
 
         String id = vc.getClassifierId();
 
-        assert id == customClassifierUtility.getClassifiersList().get(0).getClassifierId();
+
+        org.junit.Assert.assertEquals(id, customClassifierUtility.getClassifiersList().get(0).getClassifierId());
+
     }
 }
