@@ -1,0 +1,5 @@
+<root>
+    <item name='com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition com.ibm.watson.developer_cloud.http.ServiceCall&lt;com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassification&gt; classify(com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifyImagesOptions)'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>

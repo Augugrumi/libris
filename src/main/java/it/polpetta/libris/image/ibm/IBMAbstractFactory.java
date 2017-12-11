@@ -1,6 +1,6 @@
 package it.polpetta.libris.image.ibm;
 
-import it.polpetta.libris.contract.IQueryBuilder;
+
 import it.polpetta.libris.image.ibm.contract.IAbstractIBMImageFactoryReverseSearchProvider;
 import it.polpetta.libris.image.ibm.visualRecognition.URLIBMImageSearcher;
 
@@ -20,5 +20,7 @@ public class IBMAbstractFactory implements IAbstractIBMImageFactoryReverseSearch
     public URLIBMImageSearcher.Builder imageSearchBuildQuery() {
         URLIBMImageSearcher.setSubscriptionKey(subscriptionKey);
         return new URLIBMImageSearcher.Builder();
+
+
     }
 }
