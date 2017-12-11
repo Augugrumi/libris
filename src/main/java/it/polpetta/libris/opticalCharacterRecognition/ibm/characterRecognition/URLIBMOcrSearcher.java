@@ -1,10 +1,7 @@
 package it.polpetta.libris.opticalCharacterRecognition.ibm.characterRecognition;
 
 import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
-import com.ibm.watson.developer_cloud.visual_recognition.v3.model.*;
 import it.polpetta.libris.contract.IQueryBuilder;
-import it.polpetta.libris.image.ibm.contract.IIBMImageSearchResult;
-import it.polpetta.libris.image.ibm.visualRecognition.IBMImageSearchResult;
 import it.polpetta.libris.opticalCharacterRecognition.contract.AbstractURLOcr;
 import it.polpetta.libris.opticalCharacterRecognition.ibm.contract.IIBMOcrResult;
 import it.polpetta.libris.opticalCharacterRecognition.ibm.contract.IIBMOcrSearcher;
@@ -17,8 +14,9 @@ import java.util.ArrayList;
 
 /**
  * Created by dpolonio on 05/05/17.
+ * OCR no longer supported
  */
-public class URLIBMOcrSearcher extends AbstractURLOcr implements IIBMOcrSearcher {
+/*public class URLIBMOcrSearcher extends AbstractURLOcr implements IIBMOcrSearcher {
     private static String subscriptionKey = null;
 
     private RecognizedText response;
@@ -91,4 +89,4 @@ public class URLIBMOcrSearcher extends AbstractURLOcr implements IIBMOcrSearcher
             return new URLIBMOcrSearcher(link);
         }
     }
-}
+}*/

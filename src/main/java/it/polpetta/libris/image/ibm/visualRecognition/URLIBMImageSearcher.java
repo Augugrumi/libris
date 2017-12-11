@@ -23,9 +23,9 @@ public class URLIBMImageSearcher extends AbstractURLSearcher implements IIBMImag
 
     private static String subscriptionKey = null;
 
-    private VisualClassification response;
+    private ClassifiedImages response;
 
-    public URLIBMImageSearcher (URL link) {
+    URLIBMImageSearcher (URL link) {
         super(link);
 
     }
@@ -46,17 +46,16 @@ public class URLIBMImageSearcher extends AbstractURLSearcher implements IIBMImag
 
         double score;
         double bestScore = 0;
-        for (VisualClassifier classifier :
-                this.response.getImages().get(0).getClassifiers()) {
-            for (VisualClassifier.VisualClass visualClass : classifier.getClasses()) {
+        for (ClassifierResult classifier : this.response.getImages().get(0).getClassifiers()) {
+            for (ClassResult visualClass : classifier.getClasses()) {
                 score = visualClass.getScore();
                 if (score > bestScore) {
                     if (bestGuess != null)
                         tags.add(bestGuess);
-                    bestGuess = visualClass.getName();
+                    bestGuess = visualClass.getClassName();
                     bestScore = score;
                 } else
-                    tags.add(visualClass.getName());
+                    tags.add(visualClass.getClassName());
             }
         }
 
@@ -71,10 +70,11 @@ public class URLIBMImageSearcher extends AbstractURLSearcher implements IIBMImag
         VisualRecognition service =
                 new VisualRecognition(VisualRecognition.VERSION_DATE_2016_05_20, subscriptionKey);
 
-        ClassifyImagesOptions options1 = new ClassifyImagesOptions.Builder()
-                .url(link.toString())
+        ClassifyOptions options = new ClassifyOptions.Builder()
+                .imagesFile(new URL(link.toString()).openStream())
                 .build();
-        response = service.classify(options1).execute();
+
+        response = service.classify(options).execute();
 
         return parseResult("");
     }
