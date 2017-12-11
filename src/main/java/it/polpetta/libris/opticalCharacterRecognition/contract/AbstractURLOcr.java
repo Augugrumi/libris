@@ -1,6 +1,7 @@
-package com.tfederico.libris.opticalCharacterRecognition.contract;
+package it.polpetta.libris.opticalCharacterRecognition.contract;
 
-import com.tfederico.libris.contract.AbstractURLSearcher;
+import it.polpetta.libris.contract.AbstractURLSearcher;
+import it.polpetta.libris.util.Coordinates;
 
 import java.net.URL;
 

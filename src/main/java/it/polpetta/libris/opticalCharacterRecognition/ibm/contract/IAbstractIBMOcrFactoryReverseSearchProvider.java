@@ -1,5 +1,6 @@
-package com.tfederico.libris.opticalCharacterRecognition.ibm.contract;
+package it.polpetta.libris.opticalCharacterRecognition.ibm.contract;
 
+import it.polpetta.libris.opticalCharacterRecognition.contract.IAbstractOcrFactoryReverseSearchProvider;
 //import it.polpetta.libris.opticalCharacterRecognition.ibm.characterRecognition.URLIBMOcrSearcher;
 
 /**

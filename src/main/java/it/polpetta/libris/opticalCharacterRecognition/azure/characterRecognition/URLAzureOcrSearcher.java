@@ -1,24 +1,35 @@
-package com.tfederico.libris.opticalCharacterRecognition.azure.characterRecognition;
+package it.polpetta.libris.opticalCharacterRecognition.azure.characterRecognition;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.tfederico.libris.opticalCharacterRecognition.azure.contract.IAzureOcrResult;
-import com.tfederico.libris.opticalCharacterRecognition.azure.contract.IAzureOcrSearcher;
-import com.tfederico.libris.opticalCharacterRecognition.contract.AbstractURLOcr;
-import com.tfederico.libris.opticalCharacterRecognition.contract.IOcrQueryBuilder;
+import it.polpetta.libris.contract.IQueryBuilder;
+import it.polpetta.libris.contract.ISearcher;
+import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
+import it.polpetta.libris.image.azure.contract.IAzureImageSearcher;
+import it.polpetta.libris.image.azure.imageRecognition.AzureImageSearchResult;
+import it.polpetta.libris.image.contract.AbstractURLImageSearcher;
+import it.polpetta.libris.opticalCharacterRecognition.azure.contract.IAzureOcrResult;
+import it.polpetta.libris.opticalCharacterRecognition.azure.contract.IAzureOcrSearcher;
+import it.polpetta.libris.opticalCharacterRecognition.contract.AbstractURLOcr;
+import it.polpetta.libris.opticalCharacterRecognition.contract.IOcrQueryBuilder;
+import it.polpetta.libris.util.Coordinates;
 
+import javax.lang.model.element.Element;
+import javax.naming.directory.SearchResult;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.PrivateKey;
 import java.util.ArrayList;
 
 /**
  * Created by dpolonio on 05/05/17.
  */
-public class URLAzureOcrSearcher extends AbstractURLOcr implements IAzureOcrSearcher {
+public class URLAzureOcrSearcher extends AbstractURLOcr implements IAzureOcrSearcher{
     private static final String azureOCRSearch =
             "https://westus.api.cognitive.microsoft.com/vision/v1.0/ocr?language=unk&detectOrientation=true";
     private static final String contentTypeAttribute = "Content-Type";

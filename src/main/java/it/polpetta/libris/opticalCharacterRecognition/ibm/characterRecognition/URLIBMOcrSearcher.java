@@ -1,4 +1,16 @@
-package com.tfederico.libris.opticalCharacterRecognition.ibm.characterRecognition;
+package it.polpetta.libris.opticalCharacterRecognition.ibm.characterRecognition;
+
+import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
+import it.polpetta.libris.contract.IQueryBuilder;
+import it.polpetta.libris.opticalCharacterRecognition.contract.AbstractURLOcr;
+import it.polpetta.libris.opticalCharacterRecognition.ibm.contract.IIBMOcrResult;
+import it.polpetta.libris.opticalCharacterRecognition.ibm.contract.IIBMOcrSearcher;
+import it.polpetta.libris.util.Coordinates;
+
+import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
 
 /**
  * Created by dpolonio on 05/05/17.

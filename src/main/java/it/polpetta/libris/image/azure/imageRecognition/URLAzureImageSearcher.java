@@ -1,15 +1,14 @@
-package com.tfederico.libris.image.azure.imageRecognition;
+package it.polpetta.libris.image.azure.imageRecognition;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.tfederico.libris.contract.AbstractURLSearcher;
-import com.tfederico.libris.image.contract.AbstractURLImageSearcher;
-import com.tfederico.libris.contract.IQueryBuilder;
-import com.tfederico.libris.image.azure.contract.IAzureImageSearchResult;
-import com.tfederico.libris.image.azure.contract.IAzureImageSearcher;
-import com.tfederico.libris.util.Coordinates;
+import it.polpetta.libris.contract.IQueryBuilder;
+import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
+import it.polpetta.libris.image.azure.contract.IAzureImageSearcher;
+import it.polpetta.libris.image.contract.AbstractURLImageSearcher;
+import it.polpetta.libris.util.Coordinates;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
@@ -30,7 +29,7 @@ public class URLAzureImageSearcher extends AbstractURLImageSearcher implements I
     private URL imagePath;
 
     private URLAzureImageSearcher(URL imagePath, Coordinates location) {
-        super(AbstractURLSearcher.stringToURL(azureImageSearch), location);
+        super(stringToURL(azureImageSearch), location);
         this.imagePath = imagePath;
     }
 
@@ -40,7 +39,7 @@ public class URLAzureImageSearcher extends AbstractURLImageSearcher implements I
 
     @Override
     protected URLConnection setConnectionParameters() {
-        URL url = AbstractURLSearcher.stringToURL(azureImageSearch);
+        URL url = stringToURL(azureImageSearch);
         HttpsURLConnection urlConnection = null;
         try {
             if (url != null) {

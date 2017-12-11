@@ -1,4 +1,4 @@
-package com.tfederico.libris.util.webSocket;
+package it.polpetta.libris.util.webSocket;
 
 import java.net.URI;
 import java.util.ArrayList;

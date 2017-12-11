@@ -1,14 +1,14 @@
-package com.tfederico.libris.image;
+package it.polpetta.libris.image;
 
-import com.tfederico.libris.image.azure.AzureAbstractFactory;
-import com.tfederico.libris.image.ibm.contract.IAbstractIBMImageFactoryReverseSearchProvider;
-import com.tfederico.libris.image.imagga.ImaggaAbstractFactory;
-import com.tfederico.libris.contract.IAbstractFactoryReverseSearchProvider;
-import com.tfederico.libris.image.azure.contract.IAbstractAzureImageFactoryReverseSearchProvider;
-import com.tfederico.libris.image.google.GoogleAbstractFactory;
-import com.tfederico.libris.image.google.contract.IAbstractGoogleImageFactoryReverseSearchProvider;
-import com.tfederico.libris.image.ibm.IBMAbstractFactory;
-import com.tfederico.libris.image.imagga.contract.IAbstractImaggaImageFactoryReverseSearchProvider;
+import it.polpetta.libris.image.azure.AzureAbstractFactory;
+import it.polpetta.libris.contract.IAbstractFactoryReverseSearchProvider;
+import it.polpetta.libris.image.azure.contract.IAbstractAzureImageFactoryReverseSearchProvider;
+import it.polpetta.libris.image.google.GoogleAbstractFactory;
+import it.polpetta.libris.image.google.contract.IAbstractGoogleImageFactoryReverseSearchProvider;
+import it.polpetta.libris.image.ibm.IBMAbstractFactory;
+import it.polpetta.libris.image.ibm.contract.IAbstractIBMImageFactoryReverseSearchProvider;
+import it.polpetta.libris.image.imagga.ImaggaAbstractFactory;
+import it.polpetta.libris.image.imagga.contract.IAbstractImaggaImageFactoryReverseSearchProvider;
 
 /**
  * Created by davide on 28/04/17.

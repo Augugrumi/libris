@@ -1,6 +1,6 @@
-package com.tfederico.libris.opticalCharacterRecognition.contract;
+package it.polpetta.libris.opticalCharacterRecognition.contract;
 
-import com.tfederico.libris.contract.IQueryBuilder;
+import it.polpetta.libris.contract.IQueryBuilder;
 
 /**
  * Created by zanna on 08/05/17.

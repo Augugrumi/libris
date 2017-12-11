@@ -1,6 +1,6 @@
-package com.tfederico.libris.image.contract;
+package it.polpetta.libris.image.contract;
 
-import com.tfederico.libris.contract.IAbstractFactoryReverseSearchProvider;
+import it.polpetta.libris.contract.IAbstractFactoryReverseSearchProvider;
 
 /**
  * Created by dpolonio on 10/05/17.

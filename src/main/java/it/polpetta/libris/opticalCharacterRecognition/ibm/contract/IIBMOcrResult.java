@@ -1,6 +1,6 @@
-package com.tfederico.libris.opticalCharacterRecognition.ibm.contract;
+package it.polpetta.libris.opticalCharacterRecognition.ibm.contract;
 
-import com.tfederico.libris.opticalCharacterRecognition.contract.IOcrSearchResult;
+import it.polpetta.libris.opticalCharacterRecognition.contract.IOcrSearchResult;
 
 /**
  * Created by zanna on 11/05/17.

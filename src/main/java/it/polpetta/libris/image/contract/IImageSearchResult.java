@@ -1,6 +1,6 @@
-package com.tfederico.libris.image.contract;
+package it.polpetta.libris.image.contract;
 
-import com.tfederico.libris.contract.ISearchResult;
+import it.polpetta.libris.contract.ISearchResult;
 
 import java.util.ArrayList;
 

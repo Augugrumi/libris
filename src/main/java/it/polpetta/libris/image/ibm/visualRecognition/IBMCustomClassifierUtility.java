@@ -1,8 +1,9 @@
-package com.tfederico.libris.image.ibm.visualRecognition;
+package it.polpetta.libris.image.ibm.visualRecognition;
 
 import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.*;
-import com.tfederico.libris.image.ibm.contract.IIBMCustomClassifierUtility;
+import com.ibm.watson.developer_cloud.service.WatsonService;
+import it.polpetta.libris.image.ibm.contract.IIBMCustomClassifierUtility;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class IBMCustomClassifierUtility implements IIBMCustomClassifierUtility {
+public class IBMCustomClassifierUtility implements IIBMCustomClassifierUtility{
 
     private static String subscriptionKey;
 

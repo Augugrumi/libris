@@ -1,11 +1,15 @@
-package com.tfederico.libris.image.azure.imageRecognition;
+package it.polpetta.libris.image.azure.imageRecognition;
 
-import com.tfederico.libris.image.azure.contract.IAzureImageSearchResult;
+import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
+import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
+import it.polpetta.libris.image.google.hmtlImageSearch.GoogleImageSearchResult;
 import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+
+import static org.junit.Assert.*;
 
 /**
  * Created by zanna on 11/05/17.

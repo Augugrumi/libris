@@ -1,6 +1,6 @@
-package com.tfederico.libris.opticalCharacterRecognition.contract;
+package it.polpetta.libris.opticalCharacterRecognition.contract;
 
-import com.tfederico.libris.contract.IAbstractFactoryReverseSearchProvider;
+import it.polpetta.libris.contract.IAbstractFactoryReverseSearchProvider;
 
 /**
  * Created by zanna on 11/05/17.

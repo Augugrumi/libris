@@ -1,10 +1,10 @@
-package com.tfederico.libris.image;
+package it.polpetta.libris.image;
 
-import com.tfederico.libris.image.azure.contract.IAzureImageSearchResult;
-import com.tfederico.libris.image.google.contract.IGoogleImageSearchResult;
-import com.tfederico.libris.image.ibm.contract.IIBMImageSearchResult;
+import it.polpetta.libris.image.azure.contract.IAzureImageSearchResult;
+import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
+import it.polpetta.libris.image.ibm.contract.IIBMImageSearchResult;
 import junit.framework.TestCase;
-import com.tfederico.libris.image.contract.IImageSearchResult;
+import it.polpetta.libris.image.contract.IImageSearchResult;
 import org.junit.Assert;
 import org.junit.Ignore;
 

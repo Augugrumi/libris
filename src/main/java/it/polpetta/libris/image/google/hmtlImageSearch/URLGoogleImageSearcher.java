@@ -1,12 +1,12 @@
-package com.tfederico.libris.image.google.hmtlImageSearch;
+package it.polpetta.libris.image.google.hmtlImageSearch;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.tfederico.libris.image.contract.AbstractURLImageSearcher;
-import com.tfederico.libris.image.contract.IImageQueryBuilder;
-import com.tfederico.libris.image.google.contract.IGoogleImageSearchResult;
-import com.tfederico.libris.image.google.contract.IGoogleImageSearcher;
-import com.tfederico.libris.util.Coordinates;
+import it.polpetta.libris.image.contract.AbstractURLImageSearcher;
+import it.polpetta.libris.image.contract.IImageQueryBuilder;
+import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
+import it.polpetta.libris.image.google.contract.IGoogleImageSearcher;
+import it.polpetta.libris.util.Coordinates;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;

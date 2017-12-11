@@ -1,6 +1,7 @@
-package com.tfederico.libris.opticalCharacterRecognition;
+package it.polpetta.libris.opticalCharacterRecognition;
 
-import com.tfederico.libris.opticalCharacterRecognition.azure.contract.IAzureOcrResult;
+import it.polpetta.libris.opticalCharacterRecognition.azure.contract.IAzureOcrResult;
+import it.polpetta.libris.opticalCharacterRecognition.ibm.contract.IIBMOcrResult;
 import junit.framework.TestCase;
 import org.junit.Assert;
 

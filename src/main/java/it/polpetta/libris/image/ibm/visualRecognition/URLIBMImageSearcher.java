@@ -1,12 +1,14 @@
-package com.tfederico.libris.image.ibm.visualRecognition;
+package it.polpetta.libris.image.ibm.visualRecognition;
 
 import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.*;
-import com.tfederico.libris.contract.AbstractURLSearcher;
-import com.tfederico.libris.image.ibm.contract.IIBMImageSearchResult;
-import com.tfederico.libris.contract.IQueryBuilder;
-import com.tfederico.libris.image.ibm.contract.IIBMImageSearcher;
-import com.tfederico.libris.util.Coordinates;
+import it.polpetta.libris.contract.AbstractURLSearcher;
+import it.polpetta.libris.contract.IQueryBuilder;
+import it.polpetta.libris.image.azure.contract.IAzureImageSearcher;
+import it.polpetta.libris.image.azure.imageRecognition.URLAzureImageSearcher;
+import it.polpetta.libris.image.ibm.contract.IIBMImageSearcher;
+import it.polpetta.libris.image.ibm.contract.IIBMImageSearchResult;
+import it.polpetta.libris.util.Coordinates;
 
 import java.io.File;
 import java.io.IOException;

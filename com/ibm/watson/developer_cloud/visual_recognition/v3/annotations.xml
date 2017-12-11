@@ -1,5 +1,0 @@
-<root>
-    <item name='com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition com.ibm.watson.developer_cloud.http.ServiceCall&lt;com.ibm.watson.developer_cloud.visual_recognition.v3.model.Classifier&gt; createClassifier(com.ibm.watson.developer_cloud.visual_recognition.v3.model.CreateClassifierOptions)'>
-        <annotation name='org.jetbrains.annotations.NotNull'/>
-    </item>
-</root>

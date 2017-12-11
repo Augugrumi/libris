@@ -1,7 +1,7 @@
-package com.tfederico.libris.image.google.contract;
+package it.polpetta.libris.image.google.contract;
 
-import com.tfederico.libris.image.contract.IAbstractImageFactoryReverseSearchProvider;
-import com.tfederico.libris.image.google.hmtlImageSearch.URLGoogleImageSearcher;
+import it.polpetta.libris.image.contract.IAbstractImageFactoryReverseSearchProvider;
+import it.polpetta.libris.image.google.hmtlImageSearch.URLGoogleImageSearcher;
 
 /**
  * Created by dpolonio on 10/05/17.

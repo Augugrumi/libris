@@ -1,4 +1,4 @@
-package com.tfederico.libris.image.ibm.contract;
+package it.polpetta.libris.image.ibm.contract;
 
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.Classifier;
 

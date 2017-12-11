@@ -1,6 +1,6 @@
-package com.tfederico.libris.opticalCharacterRecognition.azure.characterRecognition;
+package it.polpetta.libris.opticalCharacterRecognition.azure.characterRecognition;
 
-import com.tfederico.libris.opticalCharacterRecognition.azure.contract.IAzureOcrResult;
+import it.polpetta.libris.opticalCharacterRecognition.azure.contract.IAzureOcrResult;
 
 import java.util.ArrayList;
 

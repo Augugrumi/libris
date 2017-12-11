@@ -1,16 +1,16 @@
-package com.tfederico.libris.image.imagga.imageRecognition;
+package it.polpetta.libris.image.imagga.imageRecognition;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.tfederico.libris.contract.AbstractURLSearcher;
-import com.tfederico.libris.contract.IQueryBuilder;
-import com.tfederico.libris.contract.ISearchResult;
-import com.tfederico.libris.image.contract.AbstractURLImageSearcher;
-import com.tfederico.libris.image.imagga.contract.IImaggaImageSearchResult;
-import com.tfederico.libris.image.imagga.contract.IImaggaImageSearcher;
-import com.tfederico.libris.util.Coordinates;
+import it.polpetta.libris.contract.IQueryBuilder;
+import it.polpetta.libris.contract.ISearchResult;
+import it.polpetta.libris.image.azure.imageRecognition.AzureImageSearchResult;
+import it.polpetta.libris.image.contract.AbstractURLImageSearcher;
+import it.polpetta.libris.image.imagga.contract.IImaggaImageSearchResult;
+import it.polpetta.libris.image.imagga.contract.IImaggaImageSearcher;
+import it.polpetta.libris.util.Coordinates;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
@@ -23,7 +23,7 @@ import org.apache.commons.codec.binary.Base64;
 /**
  * Created by federico on 17/05/17.
  */
-public class URLImaggaImageSearcher extends AbstractURLImageSearcher implements IImaggaImageSearcher {
+public class URLImaggaImageSearcher extends AbstractURLImageSearcher implements IImaggaImageSearcher{
 
     private static final String imaggaImageSearch =
             "https://api.imagga.com/v1/tagging";
@@ -46,7 +46,7 @@ public class URLImaggaImageSearcher extends AbstractURLImageSearcher implements 
 
     @Override
     protected URLConnection setConnectionParameters() {
-        URL url = AbstractURLSearcher.stringToURL(imaggaImageSearch + "?" +
+        URL url = stringToURL(imaggaImageSearch + "?" +
             "url=" + link);
         HttpsURLConnection urlConnection = null;
         try {

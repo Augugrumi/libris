@@ -1,7 +1,7 @@
-package com.tfederico.libris.image.azure.contract;
+package it.polpetta.libris.image.azure.contract;
 
-import com.tfederico.libris.image.azure.imageRecognition.URLAzureImageSearcher;
-import com.tfederico.libris.image.contract.IAbstractImageFactoryReverseSearchProvider;
+import it.polpetta.libris.image.azure.imageRecognition.URLAzureImageSearcher;
+import it.polpetta.libris.image.contract.IAbstractImageFactoryReverseSearchProvider;
 
 /**
  * Created by dpolonio on 10/05/17.

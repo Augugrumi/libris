@@ -1,4 +1,4 @@
-package com.tfederico.libris.contract;
+package it.polpetta.libris.contract;
 
 /**
  * Created by davide on 06/05/17.

@@ -1,6 +1,6 @@
-package com.tfederico.libris.image.google.hmtlImageSearch;
+package it.polpetta.libris.image.google.hmtlImageSearch;
 
-import com.tfederico.libris.image.google.contract.IGoogleImageSearchResult;
+import it.polpetta.libris.image.google.contract.IGoogleImageSearchResult;
 import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
