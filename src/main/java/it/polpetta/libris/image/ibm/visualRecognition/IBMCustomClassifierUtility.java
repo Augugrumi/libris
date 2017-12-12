@@ -6,7 +6,10 @@ import com.ibm.watson.developer_cloud.service.WatsonService;
 import it.polpetta.libris.image.ibm.contract.IIBMCustomClassifierUtility;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.lang.Class;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -87,5 +90,36 @@ public class IBMCustomClassifierUtility implements IIBMCustomClassifierUtility{
 
         return service.updateClassifier(classifierOptions).execute();
     }
+
+    @Override
+    public ClassifiedImages classifyById(String classifierId, String imagePath) throws FileNotFoundException {
+
+        ClassifyOptions.Builder builder = new ClassifyOptions.Builder();
+
+        InputStream imagesStream = new FileInputStream(imagePath);
+
+        String parameters;
+        if(classifierId != ""){
+            parameters = "{\"classifier_ids\": [\""+classifierId+"\"],"
+                    + "\"owners\": [\"me\"]}";
+        }
+        else
+            parameters = "{\"owners\": [\"me\"]}";
+
+        String[] steps = imagePath.split("/");
+        builder.imagesFile(imagesStream)
+                .imagesFilename(steps[steps.length-1])
+                .parameters(parameters);
+
+        ClassifyOptions classifyOptions = builder.build();
+
+        return service.classify(classifyOptions).execute();
+    }
+
+    @Override
+    public ClassifiedImages classify(String imagePath) throws FileNotFoundException {
+        return classifyById("",imagePath);
+    }
+
 
 }
