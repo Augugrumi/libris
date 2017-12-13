@@ -1,12 +1,12 @@
 package it.polpetta.libris.opticalCharacterRecognition.ibm;
 
-import it.polpetta.libris.opticalCharacterRecognition.ibm.characterRecognition.URLIBMOcrSearcher;
-import it.polpetta.libris.opticalCharacterRecognition.ibm.contract.IAbstractIBMOcrFactoryReverseSearchProvider;
+//import it.polpetta.libris.opticalCharacterRecognition.ibm.characterRecognition.URLIBMOcrSearcher;
+//import it.polpetta.libris.opticalCharacterRecognition.ibm.contract.IAbstractIBMOcrFactoryReverseSearchProvider;
 
 /**
  * Created by zanna on 11/05/17.
  */
-public class IBMAbstractFactory implements IAbstractIBMOcrFactoryReverseSearchProvider {
+/*public class IBMAbstractFactory implements IAbstractIBMOcrFactoryReverseSearchProvider {
 
     private String subscriptionKey = null;
 
@@ -19,4 +19,4 @@ public class IBMAbstractFactory implements IAbstractIBMOcrFactoryReverseSearchPr
         URLIBMOcrSearcher.setSubscriptionKey(subscriptionKey);
         return new URLIBMOcrSearcher.Builder();
     }
-}
+}*/
