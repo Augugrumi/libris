@@ -1,0 +1,7 @@
+package com.tfederico.libris.text.naturalLanguageUnderstanding.ibm;
+
+import com.tfederico.libris.text.naturalLanguageUnderstanding.contract.IIBMNaturalLanguageUnderstandingUtility;
+
+public class IBMNaturalLanguageUnderstandingUtility implements IIBMNaturalLanguageUnderstandingUtility{
+
+}
