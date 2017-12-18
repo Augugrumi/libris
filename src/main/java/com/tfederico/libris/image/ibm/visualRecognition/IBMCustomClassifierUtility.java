@@ -91,9 +91,9 @@ public class IBMCustomClassifierUtility implements IIBMCustomClassifierUtility{
 
         ClassifyOptions.Builder builder = new ClassifyOptions.Builder();
 
-        InputStream imagesStream = new BufferedInputStream(new FileInputStream(imagePath));
+        InputStream imagesStream = new FileInputStream(imagePath);
 
-        int i = imagesStream.read();
+        //int i = imagesStream.read();
 
         String parameters;
         if(!classifierId.equals("")){
@@ -109,7 +109,6 @@ public class IBMCustomClassifierUtility implements IIBMCustomClassifierUtility{
         String fileExt = fileName.split("\\.")[1];
         builder.imagesFile(imagesStream)
                 .imagesFilename(fileName)
-                .imagesFileContentType(fileExt)
                 .parameters(parameters);
 
         ClassifyOptions classifyOptions = builder.build();
