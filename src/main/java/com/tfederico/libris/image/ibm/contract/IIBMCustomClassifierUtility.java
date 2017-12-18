@@ -4,6 +4,7 @@ import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifiedImag
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.Classifier;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +23,7 @@ public interface IIBMCustomClassifierUtility {
     Classifier updateClassifier(String id, HashMap<String, String> classesAndPaths,
                                       ArrayList<String> negativesPaths) throws FileNotFoundException;
 
-    ClassifiedImages classifyById(String classifierId, String imagePath) throws FileNotFoundException;
+    ClassifiedImages classifyById(String classifierId, String imagePath) throws IOException;
 
-    ClassifiedImages classify(String imagePath) throws FileNotFoundException;
+    ClassifiedImages classify(String imagePath) throws IOException;
 }

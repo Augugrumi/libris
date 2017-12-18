@@ -4,10 +4,7 @@ import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.*;
 import com.tfederico.libris.image.ibm.contract.IIBMCustomClassifierUtility;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -90,23 +87,29 @@ public class IBMCustomClassifierUtility implements IIBMCustomClassifierUtility{
     }
 
     @Override
-    public ClassifiedImages classifyById(String classifierId, String imagePath) throws FileNotFoundException {
+    public ClassifiedImages classifyById(String classifierId, String imagePath) throws IOException {
 
         ClassifyOptions.Builder builder = new ClassifyOptions.Builder();
 
-        InputStream imagesStream = new FileInputStream(imagePath);
+        InputStream imagesStream = new BufferedInputStream(new FileInputStream(imagePath));
+
+        int i = imagesStream.read();
 
         String parameters;
-        if(classifierId != ""){
+        if(!classifierId.equals("")){
             parameters = "{\"classifier_ids\": [\""+classifierId+"\"],"
                     + "\"owners\": [\"me\"]}";
         }
         else
             parameters = "{\"owners\": [\"me\"]}";
 
+
         String[] steps = imagePath.split("/");
+        String fileName = steps[steps.length-1];
+        String fileExt = fileName.split("\\.")[1];
         builder.imagesFile(imagesStream)
-                .imagesFilename(steps[steps.length-1])
+                .imagesFilename(fileName)
+                .imagesFileContentType(fileExt)
                 .parameters(parameters);
 
         ClassifyOptions classifyOptions = builder.build();
@@ -115,7 +118,7 @@ public class IBMCustomClassifierUtility implements IIBMCustomClassifierUtility{
     }
 
     @Override
-    public ClassifiedImages classify(String imagePath) throws FileNotFoundException {
+    public ClassifiedImages classify(String imagePath) throws IOException {
         return classifyById("",imagePath);
     }
 
