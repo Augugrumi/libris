@@ -6,7 +6,7 @@ import com.tfederico.libris.text.naturalLanguageUnderstanding.contract.IIBMNatur
 
 import java.util.ArrayList;
 import java.util.List;
-
+//todo refactor the whole class in a smarter way
 public class IBMNaturalLanguageUnderstandingUtility implements IIBMNaturalLanguageUnderstandingUtility{
 
     private NaturalLanguageUnderstanding nlu;
