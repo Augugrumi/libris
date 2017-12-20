@@ -11,6 +11,10 @@ public class IBMDiscoveryUtility implements IIBMDiscoveryUtility{
 
     private static String apiKey;
 
+    private static String username;
+
+    private static String password;
+
     private Discovery discovery;
 
     private IIBMDiscoveryEnvironmentUtility environmentUtility;
@@ -25,7 +29,7 @@ public class IBMDiscoveryUtility implements IIBMDiscoveryUtility{
 
     public IBMDiscoveryUtility(){
         discovery = new Discovery("2017-11-07");
-        discovery.setApiKey(apiKey);
+        discovery.setUsernameAndPassword(username, password);
         environmentUtility = new IBMDiscoveryEnvironmentUtility();
         configurationUtility = new IBMDiscoveryConfigurationUtility();
         collectionUtility = new IBMDiscoveryCollectionUtility();
@@ -33,8 +37,9 @@ public class IBMDiscoveryUtility implements IIBMDiscoveryUtility{
         queryUtility = new IBMDiscoveryQueryUtility();
     }
 
-    public static void setApiKey(String key){
-        apiKey = key;
+    public static void setUserAndPassword(String user, String psw){
+        username = user;
+        password = psw;
     }
 
     @Override
