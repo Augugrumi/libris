@@ -23,7 +23,7 @@ public interface IIBMCustomClassifierUtility {
     Classifier updateClassifier(String id, HashMap<String, String> classesAndPaths,
                                       ArrayList<String> negativesPaths) throws FileNotFoundException;
 
-    ClassifiedImages classifyById(String classifierId, String imagePath) throws IOException;
+    ClassifiedImages classifyById(ArrayList<String> classifierId, String imagePath) throws IOException;
 
     ClassifiedImages classify(String imagePath) throws IOException;
 }

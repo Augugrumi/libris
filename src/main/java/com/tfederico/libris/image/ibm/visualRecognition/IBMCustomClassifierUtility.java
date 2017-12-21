@@ -87,16 +87,28 @@ public class IBMCustomClassifierUtility implements IIBMCustomClassifierUtility{
     }
 
     @Override
-    public ClassifiedImages classifyById(String classifierId, String imagePath) throws IOException {
+    public ClassifiedImages classifyById(ArrayList<String> classifierId, String imagePath) throws IOException {
 
         ClassifyOptions.Builder builder = new ClassifyOptions.Builder();
 
-        InputStream imagesStream = new FileInputStream(imagePath);
+        InputStream imagesStream = new BufferedInputStream(new FileInputStream(imagePath));
 
         //int i = imagesStream.read();
 
+
+        StringBuilder ids = new StringBuilder();
+
+        if(classifierId != null){
+            for(String s : classifierId){
+                ids.append("\"").append(s).append("\"").append(",");
+            }
+
+            ids.deleteCharAt(ids.length()-1);
+        }
+
+
         String parameters;
-        if(!classifierId.equals("")){
+        if(classifierId != null){
             parameters = "{\"classifier_ids\": [\""+classifierId+"\"],"
                     + "\"owners\": [\"me\"]}";
         }
@@ -118,7 +130,7 @@ public class IBMCustomClassifierUtility implements IIBMCustomClassifierUtility{
 
     @Override
     public ClassifiedImages classify(String imagePath) throws IOException {
-        return classifyById("",imagePath);
+        return classifyById(null,imagePath);
     }
 
 
